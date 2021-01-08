@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Employ√© d'une ligue h√©berg√©e par la M2L. Certains peuvent 
@@ -13,11 +14,12 @@ import java.io.Serializable;
 public class Employe implements Serializable, Comparable<Employe>
 {
 	private static final long serialVersionUID = 4795721718037994734L;
-	private String nom, prenom, password, mail, dateDepart, dateArrivee;
+	private String nom, prenom, password, mail;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
+	private LocalDate dateDepart, dateArrivee;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, String dateDepart, String dateArrivee)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrivee)
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
@@ -108,18 +110,28 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param mail le nouveau mail de l'employ√©.
 	 */
 
-	public void setMail(String mail)   //Setter pour la date
+	public void setMail(String mail)   
 	{
 		this.mail = mail;
 	}
 	
-	public String getDateArrivee() {  //Getter pour la date
+	public LocalDate getDateArrivee() {  //Getter pour la date d'arrivÈe
 		return dateArrivee;
 	}
 	
-	public void setDateArrivee(String dateArrivee){
+	public void setDateArrivee(LocalDate dateArrivee){  //Setter pour la date d'arrivÈe
 		this.dateArrivee = dateArrivee;
 	}
+	
+	public LocalDate getDateDepart() {  //Getter pour la date de dÈpart
+		return dateDepart;
+	}
+	
+	public void setDateDepart(LocalDate dateDepart){  //Setter pour la date de dÈpart
+		this.dateDepart = dateDepart;
+	}
+	
+	
 
 	/**
 	 * Retourne vrai ssi le password pass√© en param√®tre est bien celui
