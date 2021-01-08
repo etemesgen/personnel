@@ -108,9 +108,17 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param mail le nouveau mail de l'employé.
 	 */
 
-	public void setMail(String mail)
+	public void setMail(String mail)   //Setter pour la date
 	{
 		this.mail = mail;
+	}
+	
+	public String getDateArrivee() {  //Getter pour la date
+		return dateArrivee;
+	}
+	
+	public void setDateArrivee(String dateArrivee){
+		this.dateArrivee = dateArrivee;
 	}
 
 	/**
