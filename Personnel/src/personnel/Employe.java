@@ -29,6 +29,17 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateArrivee = dateArrivee;  //Itération 1
 		this.dateDepart = dateDepart;  //Itération 1
+	
+	
+	/*Exception pour les dates */
+		try {
+			this.dateArrivee = dateArrivee;
+			this.dateDepart = dateDepart;
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	
 	}
 	
 	/**
@@ -130,7 +141,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setDateDepart(LocalDate dateDepart){  //Setter pour la date de départ
 		this.dateDepart = dateDepart;
 	}
-	
 	
 
 	/**
