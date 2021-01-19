@@ -62,10 +62,10 @@ class testLigue
 	          assertEquals(14, ligueTwo.compareTo(ligue));
 	   } */
 	   
-	   @Test
+	/*   @Test
 	   void getAdmin() throws SauvegardeImpossible{
 		      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
 		      assertEquals("root  (super-utilisateur)", ligue.getAdministrateur().toString());
-	   }
+	   }*/
 	   
 }

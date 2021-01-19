@@ -130,7 +130,8 @@ public class Employe implements Serializable, Comparable<Employe>
 		return dateArrivee;
 	}
 	
-	public void setDateArrivee(LocalDate dateArrivee){  //Setter pour la date d'arrivée
+	public void setDateArrivee(LocalDate dateArrivee) throws DateImpossible{  //Setter pour la date d'arrivée
+		if(dateArrivee != null && dateDepart != null &&  dateDepart.isBefore(dateArrivee)) throw new DateImpossible();
 		this.dateArrivee = dateArrivee;
 	}
 	
@@ -138,7 +139,8 @@ public class Employe implements Serializable, Comparable<Employe>
 		return dateDepart;
 	}
 	
-	public void setDateDepart(LocalDate dateDepart){  //Setter pour la date de départ
+	public void setDateDepart(LocalDate dateDepart) throws DateImpossible{  //Setter pour la date de départ
+		if(dateArrivee != null && dateDepart != null &&  dateArrivee.isAfter(dateDepart)) throw new DateImpossible();
 		this.dateDepart = dateDepart;
 	}
 	

@@ -3,10 +3,14 @@ package testsUnitaires;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import personnel.DateImpossible;
 import personnel.Employe;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
@@ -97,5 +101,28 @@ class testEmploye {
     //      assertEquals("root  (super-utilisateur)", rootEmploye.toString());
    }
    
+   @Test
+   void getDateDepart() throws SauvegardeImpossible{
+	   Ligue ligue = gestionPersonnel.addLigue("ligueOne");
+       Employe employe = ligue.addEmploye("John", "Doe", "Johndoe@mail.com", "admin", LocalDate.parse("2018-12-30"), LocalDate.parse("2018-12-28"));
+       assertEquals(LocalDate.parse("2018-12-30"), employe.getDateDepart());
+   }
+   
+   @Test
+   void setDateDepart() throws SauvegardeImpossible, DateImpossible{
+	  try {
+	     Ligue ligue = gestionPersonnel.addLigue("ligueOne");
+         Employe employe = ligue.addEmploye("John", "Doe", "Johndoe@mail.com", "admin", LocalDate.parse("2018-12-30"), LocalDate.parse("2018-12-28"));
+         employe.setDateDepart(LocalDate.parse("2018-12-31"));
+         assertEquals(LocalDate.parse("2018-12-31"), employe.getDateDepart());
+         employe.setDateDepart(null);
+         assertEquals(null, employe.getDateDepart());
+         employe.setDateDepart(LocalDate.parse("2018-12-27"));
+         fail("L'exception DateImpossible devrait être lancé");
+	   } catch(DateImpossible err){
+		  assertTrue(err instanceof DateImpossible);
+	 }
+	  
+  }
    
 }
