@@ -55,17 +55,17 @@ class testLigue
 	          assertEquals("ligueOne", ligue.toString());
 	   }
 	   
-	/*   @Test
+       @Test
 	   void compareTo() throws SauvegardeImpossible{
 		      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
 		      Ligue ligueTwo = gestionPersonnel.addLigue("ligueTwo");
-	          assertEquals(14, ligueTwo.compareTo(ligue));
-	   } */
+	          assertTrue(ligueTwo.compareTo(ligue)>0);
+	   }
 	   
-	/*   @Test
+       @Test
 	   void getAdmin() throws SauvegardeImpossible{
 		      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
-		      assertEquals("root  (super-utilisateur)", ligue.getAdministrateur().toString());
-	   }*/
+		      assertEquals(gestionPersonnel.getRoot(), ligue.getAdministrateur());
+	   }
 	   
 }
