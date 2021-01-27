@@ -13,7 +13,7 @@ public class PersonnelConsole
 	public PersonnelConsole(GestionPersonnel gestionPersonnel)
 	{
 		this.gestionPersonnel = gestionPersonnel;
-		this.employeConsole = new EmployeConsole();
+		this.employeConsole = new EmployeConsole(gestionPersonnel, ligueConsole);
 		this.ligueConsole = new LigueConsole(gestionPersonnel, employeConsole);
 	}
 	
