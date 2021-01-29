@@ -55,14 +55,14 @@ class testLigue
 	          assertEquals("ligueOne", ligue.toString());
 	   }
 	   
- @Test
+	   @Test
 	   void compareTo() throws SauvegardeImpossible{
 		      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
 		      Ligue ligueTwo = gestionPersonnel.addLigue("ligueTwo");
 	          assertTrue(ligueTwo.compareTo(ligue)>0);
 	   }
 	   
-@Test
+	   @Test
 	   void getAdmin() throws SauvegardeImpossible{
 		      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
 		      assertEquals(gestionPersonnel.getRoot(), ligue.getAdministrateur());

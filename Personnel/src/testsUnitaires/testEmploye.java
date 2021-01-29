@@ -84,7 +84,7 @@ class testEmploye {
           assertEquals(0, ligue.getEmployes().size());
    }
    
- @Test
+   @Test
    void compareTo() throws SauvegardeImpossible{
 	      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
           Employe premierEmploye = ligue.addEmploye("John", "Doe", "Johndoe@mail.com", "admin", null, null);
