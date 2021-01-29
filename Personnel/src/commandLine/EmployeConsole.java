@@ -2,33 +2,66 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.util.ArrayList;
+
+import commandLineMenus.List;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
+import personnel.GestionPersonnel;
+import personnel.Ligue;
 
 public class EmployeConsole 
 {
+	private GestionPersonnel gestionPersonnel;
+	private LigueConsole ligueConsole;
+	
+	public EmployeConsole(GestionPersonnel gestionPersonnel, LigueConsole ligueConsole)
+	{
+		this.gestionPersonnel = gestionPersonnel;
+		this.ligueConsole = ligueConsole;
+	}
+	
+	
 	private Option afficher(final Employe employe)
 	{
-		return new Option("Afficher l'employÃ©", "l", () -> {System.out.println(employe);});
+		return new Option("Afficher l'employé", "l", () -> {System.out.println(employe);});
 	}
 
 	ListOption<Employe> editerEmploye()
 	{
 		return (employe) -> editerEmploye(employe);		
 	}
+	
+	
+	// Itération 2 : Selectionner un employé avant de le modifier
+	Option SelectionnerEmploye(Employe employe){ 
+		Menu menu = new Menu("Sélectionner un employé " + employe.getNom(), "s");
+		menu.add(selectionnerEmploye());
+		menu.add(afficher(employe));
+		menu.add(changerNom(employe));
+		menu.add(changerPrenom(employe));
+		menu.add(changerMail(employe));
+		menu.add(changerPassword(employe));
+		menu.addBack("q");
+		return menu;
+		
+	}
 
 	Option editerEmploye(Employe employe)
 	{
-			Menu menu = new Menu("GÃ©rer le compte " + employe.getNom(), "c");
-			menu.add(afficher(employe));
-			menu.add(changerNom(employe));
-			menu.add(changerPrenom(employe));
-			menu.add(changerMail(employe));
-			menu.add(changerPassword(employe));
-			menu.addBack("q");
+			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
+			menu.add(selectionnerEmploye());
 			return menu;
+	}
+	
+	private List<Employe> selectionnerEmploye(){
+		return new List<>("Sélectionner un employé", "s", 
+				() -> new ArrayList<>(Ligue.getEmployes()),
+				(element) -> editerEmploye(element)
+				);
+		
 	}
 
 	private Option changerNom(final Employe employe)
