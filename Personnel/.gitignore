@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 bin
 GestionPersonnel.srz
 test
+=======
+/bin
+GestionPersonnel.srz
+/target/
+>>>>>>> branch 'master' of https://github.com/alexandreMesle/personnel.git
