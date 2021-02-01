@@ -36,33 +36,33 @@ public class EmployeConsole
 	
 	
 	// Itération 2 : Selectionner un employé avant de le modifier
-	Option SelectionnerEmploye(Employe employe){ 
-		Menu menu = new Menu("Sélectionner un employé " + employe.getNom(), "s");
-		menu.add(selectionnerEmploye());
-		menu.add(afficher(employe));
-		menu.add(changerNom(employe));
-		menu.add(changerPrenom(employe));
-		menu.add(changerMail(employe));
-		menu.add(changerPassword(employe));
-		menu.addBack("q");
-		return menu;
+/*	Option SelectionnerEmploye(Employe employe){ 
 		
-	}
+		
+	}*/
 
 	Option editerEmploye(Employe employe)
 	{
 			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
-			menu.add(selectionnerEmploye());
+	//		menu.add(SelectionnerEmploye());
+	//		Menu menu = new Menu("Sélectionner un employé " + employe.getNom(), "s");
+    //		menu.add(SelectionnerEmploye());
+			menu.add(afficher(employe));
+			menu.add(changerNom(employe));
+			menu.add(changerPrenom(employe));
+			menu.add(changerMail(employe));
+			menu.add(changerPassword(employe));
+			menu.addBack("q");
 			return menu;
 	}
 	
-	private List<Employe> selectionnerEmploye(){
+/*	private List<Employe> SelectionnerEmploye(){
 		return new List<>("Sélectionner un employé", "s", 
 				() -> new ArrayList<>(Ligue.getEmployes()),
 				(element) -> editerEmploye(element)
 				);
 		
-	}
+	}*/
 
 	private Option changerNom(final Employe employe)
 	{
@@ -73,7 +73,7 @@ public class EmployeConsole
 	
 	private Option changerPrenom(final Employe employe)
 	{
-		return new Option("Changer le prÃ©nom", "p", () -> {employe.setPrenom(getString("Nouveau prÃ©nom : "));});
+		return new Option("Changer le prénom", "p", () -> {employe.setPrenom(getString("Nouveau prénom : "));});
 	}
 	
 	private Option changerMail(final Employe employe)
