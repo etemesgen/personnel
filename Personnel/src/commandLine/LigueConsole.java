@@ -1,10 +1,8 @@
 package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import commandLineMenus.List;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
@@ -108,11 +106,9 @@ public class LigueConsole
 				{
 					ligue.addEmploye(getString("nom : "), 
 						getString("prenom : "), getString("mail : "), 
-						getString("password : "), null, null
-			/*Itération 2 Option n'apparît dans le menu */	
-						/*getLocalDate("year", "month", "dayOfMonth")), getLocalDate()*/);
+						getString("password : "),
 				}
-		);
+		); 
 	}
 	
 	private Menu gererEmployes(Ligue ligue)
