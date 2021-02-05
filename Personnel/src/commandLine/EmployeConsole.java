@@ -9,6 +9,7 @@ import commandLineMenus.List;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
+import personnel.DateImpossible;
 import personnel.Employe;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
