@@ -53,13 +53,11 @@ class testLigue
 	          assertEquals("ligueOne", ligue.toString());
 	   }
 
-	   @Test
 	   void compareTo() throws SauvegardeImpossible{
 		      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
 		      Ligue ligueTwo = gestionPersonnel.addLigue("ligueTwo");
 	          assertTrue(ligueTwo.compareTo(ligue)>0);
 	   }
-	   
 
        @Test
        void getAdmin() throws SauvegardeImpossible{

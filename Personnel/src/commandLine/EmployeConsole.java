@@ -35,38 +35,21 @@ public class EmployeConsole
 	{
 		return (employe) -> editerEmploye(employe);		
 	}
-	
-	
-	// Itération 2 : Selectionner un employé avant de le modifier
-/*	Option SelectionnerEmploye(Employe employe){ 
-		
-		
-	}*/
 
 	Option editerEmploye(Employe employe)
 	{
 			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
-	//		menu.add(SelectionnerEmploye());
-	//		Menu menu = new Menu("Sélectionner un employé " + employe.getNom(), "s");
-    //		menu.add(SelectionnerEmploye());
 			menu.add(afficher(employe));
 			menu.add(changerNom(employe));
 			menu.add(changerPrenom(employe));
 			menu.add(changerMail(employe));
 			menu.add(changerPassword(employe));
-			menu.add(changerDateArrivee(employe)); //itération 2 : ajouter les dates au menu dialogue
-			menu.add(changerDateDepart(employe)); //itération 2 : ajouter les dates au menu dialogue
+			menu.add(changerDateArrivee(employe));
+			menu.add(changerDateDepart(employe));
 			menu.addBack("q");
 			return menu;
 	}
 	
-/*	private List<Employe> SelectionnerEmploye(){
-		return new List<>("Sélectionner un employé", "s", 
-				() -> new ArrayList<>(Ligue.getEmployes()),
-				(element) -> editerEmploye(element)
-				);
-		
-	}*/
 
 	private Option changerNom(final Employe employe)
 	{
@@ -90,26 +73,28 @@ public class EmployeConsole
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
+	/* Impossible de saisir les dates */
 	private Option changerDateArrivee(final Employe employe)
 	{
-		return new Option ("Changer la date d'arrivee", "a", () -> {
-			try {
+		return new Option("Changer la date d'arrivée", "a", () -> {
+		try {
+			System.out.println("Nouvelle date d'arrivée : ");
 			employe.setDateArrivee(employe.getDateArrivee());
 		} catch (DateImpossible e) {
-			e.printStackTrace();
-		}
-		System.out.println ("Nouvelle Date d'arrivee :");});
-	} //itération 2 : ajouter les dates au menu dialogue
+			System.out.println ("La date d'arrivée doit être inférieur à la date de départ");
+		}});
+	}
+	
 
 	private Option changerDateDepart(final Employe employe)
 	{
 		return new Option ("Changer la date depart", "d", () -> {
 			try {
-			employe.setDateDepart(employe.getDateDepart());
+				System.out.println ("Nouvelle Date de départ :");
+				employe.setDateDepart(employe.getDateDepart());
 		} catch (DateImpossible e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println ("La date de départ doit être supérieur à la date d'arrivée");
 		}
-		System.out.println ("Nouvelle Date de départ :");});
-	} //itération 2 : ajouter les dates au menu dialogue
+		});
+	} 
 }
