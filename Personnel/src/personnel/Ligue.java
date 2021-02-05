@@ -19,7 +19,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	private static final long serialVersionUID = 1L;
 	private int id = -1;
 	private String nom;
-	private static SortedSet<Employe> employes;
+	private SortedSet<Employe> employes;
 	private Employe administrateur;
 	private GestionPersonnel gestionPersonnel;
 	private LocalDate dateArrivee;
@@ -112,7 +112,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @return les employés de la ligue dans l'ordre alphabétique.
 	 */
 	
-	public static SortedSet<Employe> getEmployes()
+	public SortedSet<Employe> getEmployes()
 	{
 		return Collections.unmodifiableSortedSet(employes);
 	}

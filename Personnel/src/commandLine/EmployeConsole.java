@@ -8,6 +8,7 @@ import commandLineMenus.List;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
+import personnel.DateImpossible;
 import personnel.Employe;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
@@ -33,36 +34,21 @@ public class EmployeConsole
 	{
 		return (employe) -> editerEmploye(employe);		
 	}
-	
-	
-	// Itération 2 : Selectionner un employé avant de le modifier
-/*	Option SelectionnerEmploye(Employe employe){ 
-		
-		
-	}*/
 
 	Option editerEmploye(Employe employe)
 	{
 			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
-	//		menu.add(SelectionnerEmploye());
-	//		Menu menu = new Menu("Sélectionner un employé " + employe.getNom(), "s");
-    //		menu.add(SelectionnerEmploye());
 			menu.add(afficher(employe));
 			menu.add(changerNom(employe));
 			menu.add(changerPrenom(employe));
 			menu.add(changerMail(employe));
 			menu.add(changerPassword(employe));
+			menu.add(changerDateArrivee(employe));
+			menu.add(changerDateDepart(employe));
 			menu.addBack("q");
 			return menu;
 	}
 	
-/*	private List<Employe> SelectionnerEmploye(){
-		return new List<>("Sélectionner un employé", "s", 
-				() -> new ArrayList<>(Ligue.getEmployes()),
-				(element) -> editerEmploye(element)
-				);
-		
-	}*/
 
 	private Option changerNom(final Employe employe)
 	{
@@ -84,6 +70,31 @@ public class EmployeConsole
 	private Option changerPassword(final Employe employe)
 	{
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
+	}
+	
+	//Itération 2 Gestion des dates
+	
+	/* Impossible de saisir les dates */
+	private Option changerDateArrivee(final Employe employe)
+	{
+		return new Option("Changer la date d'arrivée", "a", () -> {
+		try {
+			employe.setDateArrivee(employe.getDateArrivee());
+			System.out.println("Nouvelle date d'arrivée : ");
+		} catch (DateImpossible e) {
+			e.printStackTrace();
+		}});
+	}
+	
+	private Option changerDateDepart(final Employe employe)
+	{
+		return new Option("Changer la date de départ", "d", () -> {
+		try {
+			employe.setDateDepart(employe.getDateDepart());
+			System.out.println("Nouvelle date de départ : ");
+		} catch (DateImpossible e) {
+			e.printStackTrace();
+		}});
 	}
 	
 

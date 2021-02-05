@@ -2,6 +2,7 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import commandLineMenus.List;
@@ -107,7 +108,9 @@ public class LigueConsole
 				{
 					ligue.addEmploye(getString("nom : "), 
 						getString("prenom : "), getString("mail : "), 
-						getString("password : "), null, null);
+						getString("password : "), null, null
+			/*Itération 2 Option n'apparît dans le menu */	
+						/*getLocalDate("year", "month", "dayOfMonth")), getLocalDate()*/);
 				}
 		);
 	}
@@ -117,7 +120,7 @@ public class LigueConsole
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
 		menu.add(ajouterEmploye(ligue));
-		menu.add(selectionnerEmploye());
+		menu.add(selectionnerEmploye(ligue));
 	/*	menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));  */
 		menu.addBack("q");
@@ -125,10 +128,10 @@ public class LigueConsole
 	}
 	
 	// Itération 2 Sélectionner un employé avant de modifier
-	private List<Employe> selectionnerEmploye()
+	private List<Employe> selectionnerEmploye(Ligue ligue)
 	{
 		return new List<>("Sélectionner un employé", "s", 
-				() -> new ArrayList<>(Ligue.getEmployes()),
+				() -> new ArrayList<>(ligue.getEmployes()),
 				employeConsole.editerEmploye()
 				);
 	}
@@ -142,11 +145,11 @@ public class LigueConsole
 				);
 	}
 	
-	private List<Employe> changerAdministrateur(final Ligue ligue)
+/*	private List<Employe> changerAdministrateur(final Ligue ligue)
 	{
 		return null;
 	}		
-
+*/
 	private List<Employe> modifierEmploye(final Ligue ligue)
 	{
 		return new List<>("Modifier un employé", "e", 
