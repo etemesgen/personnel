@@ -72,8 +72,6 @@ public class EmployeConsole
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
-	//Itération 2 Gestion des dates
-	
 	/* Impossible de saisir les dates */
 	private Option changerDateArrivee(final Employe employe)
 	{
@@ -97,5 +95,6 @@ public class EmployeConsole
 		}});
 	}
 	
+
 
 }
