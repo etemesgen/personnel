@@ -91,7 +91,12 @@ public class LigueConsole
 				() -> {ligue.setNom(getString("Nouveau nom : "));});
 	}
 
-	private List<Ligue> selectionnerLigue()
+	private Option changerNom(final Ligue ligue)
+{
+	return new Option("Renommer", "r", 
+			() -> {ligue.setNom(getString("Nouveau nom : "));});
+}
+private List<Ligue> selectionnerLigue()
 	{
 		return new List<Ligue>("Sélectionner une ligue", "e", 
 				() -> new ArrayList<>(gestionPersonnel.getLigues()),
@@ -99,7 +104,7 @@ public class LigueConsole
 				);
 	}
 	
-	private Option ajouterEmploye(final Ligue ligue)
+	/*private Option ajouterEmploye(final Ligue ligue)
 	{
 		return new Option("ajouter un employé", "a",
 				() -> 
@@ -109,13 +114,13 @@ public class LigueConsole
 						getString("password : "),
 				}
 		); 
-	}
+	}*/
 	
 	private Menu gererEmployes(Ligue ligue)
 	{
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
-		menu.add(ajouterEmploye(ligue));
+	 /* menu.add(ajouterEmploye(ligue));*/
 		menu.add(selectionnerEmploye(ligue));
 	/*	menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));  */
