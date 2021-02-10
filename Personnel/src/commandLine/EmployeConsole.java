@@ -74,30 +74,33 @@ public class EmployeConsole
 	}
 	
 	/* Itération 2*/
-	private Option changerDateArrivee(final Employe employé ) 
+	private Option changerDateArrivee(final Employe employe) 
 	{
 		return new Option ("Changer la date d'arrivée", "a", ()-> {
 			try {
-				employe.setDateArrivee (LocalDate("La date d'arrivée est :"));
+				System.out.println("La date d'arrivée est");
+				employe.setDateArrivee (LocalDate());
 			}
-		  catch (personnel.DateImpossible) {
+		  catch (DateImpossible e) {
 			  System.out.println("La date saisie est invalide !");
 		  }});
 	}
 
-	private Option changerDateDepart(final Employe employé )
+	private Option changerDateDepart(final Employe employe)
 	{
 		return new Option (" Changer la date de départ", "d", () -> {
 			try {
-				employe.setDateDepart (LocalDate(" La date de départ est :"));
+				System.out.println("La date de départ est");
+				employe.setDateDepart (LocalDate());
 		} 
-		   catch (personnel.DateImpossible) {
+		   catch (DateImpossible e) {
 			   System.out.println("La date saisie est invalide !");
 		   }});
 	}
 	
-	private LocalDate  LocalDate () {
+	private LocalDate LocalDate () {
 		return  null ;
 	}
+}
 	
 	
