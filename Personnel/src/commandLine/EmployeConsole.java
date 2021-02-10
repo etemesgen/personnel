@@ -2,6 +2,7 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import commandLineMenus.List;
@@ -72,15 +73,15 @@ public class EmployeConsole
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
-	/* Impossible de saisir les dates */
+	/* Itération 2 Impossible de saisir les dates */
 	private Option changerDateArrivee(final Employe employe)
 	{
 		return new Option("Changer la date d'arrivée", "a", () -> {
 		try {
-			employe.setDateArrivee(employe.getDateArrivee());
 			System.out.println("Nouvelle date d'arrivée : ");
+			employe.setDateArrivee(LocalDate(employe));
 		} catch (DateImpossible e) {
-			e.printStackTrace();
+			System.out.println("La date d'arrivée doit être inférieur à la date de départ !");
 		}});
 	}
 	
@@ -88,10 +89,14 @@ public class EmployeConsole
 	{
 		return new Option("Changer la date de départ", "d", () -> {
 		try {
-			employe.setDateDepart(employe.getDateDepart());
 			System.out.println("Nouvelle date de départ : ");
+			employe.setDateDepart(LocalDate(employe));
 		} catch (DateImpossible e) {
-			e.printStackTrace();
+			System.out.println("La date de départ doit être supérieur à la date d'arrivée !");
 		}});
+	}
+	
+	private LocalDate LocalDate(Employe employe) {
+		return employe.getDateArrivee();
 	}
 }

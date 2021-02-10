@@ -72,7 +72,7 @@ public class LigueConsole
 		Menu menu = new Menu("Editer " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
-		//menu.add(changerAdministrateur(ligue));
+		menu.add(changerAdministrateur(ligue, ligue.getAdministrateur()));
 		menu.add(changerNom(ligue));
 		menu.add(supprimer(ligue));
 		menu.addBack("q");
@@ -108,13 +108,13 @@ public class LigueConsole
 				{
 					ligue.addEmploye(getString("nom : "), 
 						getString("prenom : "), getString("mail : "), 
-						getString("password : "), null, null
+						getString("password : "), null, null);
 			/*Itération 2 Option n'apparît dans le menu */	
-						/*getLocalDate("year", "month", "dayOfMonth")), getLocalDate()*/);
+					//	getLocalDate("Date d'arrivée : "), getLocalDate("Date de départ :"));
 				}
 		);
 	}
-	
+
 	private Menu gererEmployes(Ligue ligue)
 	{
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
@@ -144,12 +144,12 @@ public class LigueConsole
 				(index, element) -> {element.remove();}
 				);
 	}
-	
-/*	private List<Employe> changerAdministrateur(final Ligue ligue)
-	{
-		return null;
-	}		
-*/
+	   
+	private Option changerAdministrateur (final Ligue ligue, final Employe admin)
+    {
+        return new Option ("Changer d'administrateur" , "c", () -> {ligue.setAdministrateur(admin);});
+    }		
+
 	private List<Employe> modifierEmploye(final Ligue ligue)
 	{
 		return new List<>("Modifier un employé", "e", 
