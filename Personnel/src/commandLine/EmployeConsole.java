@@ -1,6 +1,7 @@
 package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
+import java.time.LocalDate; /*Itération 2*/
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -76,27 +77,33 @@ public class EmployeConsole
 	/* Itération 2 Impossible de saisir les dates */
 	private Option changerDateArrivee(final Employe employe)
 	{
+
 		return new Option("Changer la date d'arrivée", "a", () -> {
 		try {
 			System.out.println("Nouvelle date d'arrivée : ");
-			employe.setDateArrivee(LocalDate(employe));
+			employe.setDateArrivee(LocalDateArrivee(employe));
 		} catch (DateImpossible e) {
 			System.out.println("La date d'arrivée doit être inférieur à la date de départ !");
 		}});
 	}
-	
+
 	private Option changerDateDepart(final Employe employe)
 	{
 		return new Option("Changer la date de départ", "d", () -> {
 		try {
 			System.out.println("Nouvelle date de départ : ");
-			employe.setDateDepart(LocalDate(employe));
+			employe.setDateDepart(LocalDateDepart(employe));
 		} catch (DateImpossible e) {
 			System.out.println("La date de départ doit être supérieur à la date d'arrivée !");
 		}});
 	}
 	
-	private LocalDate LocalDate(Employe employe) {
+	private LocalDate LocalDateArrivee(Employe employe) {
 		return employe.getDateArrivee();
 	}
-}
+	
+	private LocalDate LocalDateDepart(Employe employe) {
+		return employe.getDateDepart();
+	}
+ }
+

@@ -1,10 +1,8 @@
 package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import commandLineMenus.List;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
@@ -21,6 +19,7 @@ public class LigueConsole
 		this.gestionPersonnel = gestionPersonnel;
 		this.employeConsole = employeConsole;
 	}
+
 
 	Menu menuLigues()
 	{
@@ -88,12 +87,19 @@ public class LigueConsole
 	}
 
 	private Option changerNom(final Ligue ligue)
-	{
-		return new Option("Renommer", "r", 
-				() -> {ligue.setNom(getString("Nouveau nom : "));});
-	}
+{
+	return new Option("Renommer", "r", 
+			() -> {ligue.setNom(getString("Nouveau nom : "));});
+}
+	
+//Itération 2 : Changer d'administrateur
+		private Option changerAdministrateur (final Ligue ligue, final Employe admin)
+		{
+			return new Option ("Changer d'administrateur" , "c", () -> {ligue.setAdministrateur(admin);});
+			
+		}
 
-	private List<Ligue> selectionnerLigue()
+private List<Ligue> selectionnerLigue()
 	{
 		return new List<Ligue>("Sélectionner une ligue", "e", 
 				() -> new ArrayList<>(gestionPersonnel.getLigues()),
@@ -110,16 +116,16 @@ public class LigueConsole
 						getString("prenom : "), getString("mail : "), 
 						getString("password : "), null, null);
 			/*Itération 2 Option n'apparît dans le menu */	
-					//	getLocalDate("Date d'arrivée : "), getLocalDate("Date de départ :"));
-				}
+					//	getLocalDate("Date d'arrivée : "), getLocalDate("Date de départ :"));		
+			}
 		);
 	}
-
+	
 	private Menu gererEmployes(Ligue ligue)
 	{
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
-		menu.add(ajouterEmploye(ligue));
+	 /* menu.add(ajouterEmploye(ligue));*/
 		menu.add(selectionnerEmploye(ligue));
 	/*	menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));  */
@@ -143,12 +149,7 @@ public class LigueConsole
 				() -> new ArrayList<>(ligue.getEmployes()),
 				(index, element) -> {element.remove();}
 				);
-	}
-	   
-	private Option changerAdministrateur (final Ligue ligue, final Employe admin)
-    {
-        return new Option ("Changer d'administrateur" , "c", () -> {ligue.setAdministrateur(admin);});
-    }		
+	}	
 
 	private List<Employe> modifierEmploye(final Ligue ligue)
 	{
