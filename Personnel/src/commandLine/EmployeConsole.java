@@ -47,6 +47,7 @@ public class EmployeConsole
 			menu.add(changerPassword(employe));
 			menu.add(changerDateArrivee(employe));
 			menu.add(changerDateDepart(employe));
+			menu.add(supprimer(employe));
 			menu.addBack("q");
 			return menu;
 	}
@@ -98,12 +99,10 @@ public class EmployeConsole
 		}});
 	}
 	
-/*	private LocalDate LocalDateArrivee(Employe employe) {
-		return employe.getDateArrivee();
+	private Option supprimer(Employe employe)
+	{
+		return new Option("Supprimer", "s", () -> {employe.remove();});
 	}
 	
-	private LocalDate LocalDateDepart(Employe employe) {
-		return employe.getDateDepart();
-	}*/
  }
 
