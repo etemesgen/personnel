@@ -98,15 +98,16 @@ public class LigueConsole
 			return new Option ("Changer d'administrateur" , "c", () -> {ligue.setAdministrateur(admin);});
 			
 		}
-
-private List<Ligue> selectionnerLigue()
-	{
-		return new List<Ligue>("Sélectionner une ligue", "e", 
-				() -> new ArrayList<>(gestionPersonnel.getLigues()),
-				(element) -> editerLigue(element)
-				);
-	}
 	
+	private List<Ligue> selectionnerLigue()
+{
+	return new List<Ligue>("Sélectionner une ligue", "e", 
+			() -> new ArrayList<>(gestionPersonnel.getLigues()),
+			(element) -> editerLigue(element)
+			);
+}
+
+
 	private Option ajouterEmploye(final Ligue ligue)
 	{
 		return new Option("ajouter un employé", "a",
