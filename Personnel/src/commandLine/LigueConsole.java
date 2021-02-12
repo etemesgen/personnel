@@ -125,7 +125,7 @@ private List<Ligue> selectionnerLigue()
 	{
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
-	 /* menu.add(ajouterEmploye(ligue));*/
+	    menu.add(ajouterEmploye(ligue));
 		menu.add(selectionnerEmploye(ligue));
 	/*	menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));  */
