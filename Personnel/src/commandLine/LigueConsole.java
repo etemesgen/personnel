@@ -115,9 +115,9 @@ public class LigueConsole
 				{
 					ligue.addEmploye(getString("nom : "), 
 						getString("prenom : "), getString("mail : "), 
-						getString("password : "), null, null);
-			/*Itération 2 Option n'apparît dans le menu */	
-					//	getLocalDate("Date d'arrivée : "), getLocalDate("Date de départ :"));		
+						getString("password : "), LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : ")));
+			/*Itération 2 Ajout des dates */	
+					//	LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : "));		
 			}
 		);
 	}
@@ -126,7 +126,7 @@ public class LigueConsole
 	{
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
-	 /* menu.add(ajouterEmploye(ligue));*/
+	    menu.add(ajouterEmploye(ligue));
 		menu.add(selectionnerEmploye(ligue));
 	/*	menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));  */
