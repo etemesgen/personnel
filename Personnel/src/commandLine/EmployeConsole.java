@@ -74,14 +74,14 @@ public class EmployeConsole
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
-	/* Itération 2 Impossible de changer les dates */
+	/* Itération 2 Changer les dates */
 	private Option changerDateArrivee(final Employe employe)
 	{
 
 		return new Option("Changer la date d'arrivée", "a", () -> {
 		try {
 			System.out.println("Nouvelle date d'arrivée : ");
-			employe.setDateArrivee(LocalDateArrivee(employe));
+			employe.setDateArrivee(LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")));
 		} catch (DateImpossible e) {
 			System.out.println("La date d'arrivée doit être inférieur à la date de départ !");
 		}});
@@ -92,18 +92,18 @@ public class EmployeConsole
 		return new Option("Changer la date de départ", "d", () -> {
 		try {
 			System.out.println("Nouvelle date de départ : ");
-			employe.setDateDepart(LocalDateDepart(employe));
+			employe.setDateDepart(LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")));
 		} catch (DateImpossible e) {
 			System.out.println("La date de départ doit être supérieur à la date d'arrivée !");
 		}});
 	}
 	
-	private LocalDate LocalDateArrivee(Employe employe) {
+/*	private LocalDate LocalDateArrivee(Employe employe) {
 		return employe.getDateArrivee();
 	}
 	
 	private LocalDate LocalDateDepart(Employe employe) {
 		return employe.getDateDepart();
-	}
+	}*/
  }
 
