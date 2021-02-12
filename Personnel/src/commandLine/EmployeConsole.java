@@ -74,7 +74,7 @@ public class EmployeConsole
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
-	/* Itération 2 Impossible de saisir les dates */
+	/* Itération 2 Impossible de changer les dates */
 	private Option changerDateArrivee(final Employe employe)
 	{
 
