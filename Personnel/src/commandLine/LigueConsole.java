@@ -71,7 +71,7 @@ public class LigueConsole
 		Menu menu = new Menu("Editer " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
-		menu.add(changerAdministrateur(ligue, ligue.getAdministrateur()));
+ //		menu.add(changerAdministrateur(ligue, ligue.getAdministrateur()));
 		menu.add(changerNom(ligue));
 		menu.add(supprimer(ligue));
 		menu.addBack("q");
@@ -82,6 +82,7 @@ public class LigueConsole
 	private Menu editerEmploye(Ligue ligue) {
 		Menu menu = new Menu("Editer " + ligue.getEmployes());
 		menu.add(modifierEmploye(ligue));
+		menu.add(selectionAdministrateur(ligue));
 		menu.add(supprimerEmploye(ligue));
 		return menu;
 	}
@@ -93,12 +94,12 @@ public class LigueConsole
 }
 	
 //Itération 2 : Changer d'administrateur
-		private Option changerAdministrateur (final Ligue ligue, final Employe admin)
+/*		private Option changerAdministrateur (final Ligue ligue, final Employe admin)
 		{
 			return new Option ("Changer d'administrateur" , "c", () -> {ligue.setAdministrateur(admin);});
 			
 		}
-
+*/
 private List<Ligue> selectionnerLigue()
 	{
 		return new List<Ligue>("Sélectionner une ligue", "e", 
@@ -127,8 +128,9 @@ private List<Ligue> selectionnerLigue()
 		menu.add(afficherEmployes(ligue));
 	    menu.add(ajouterEmploye(ligue));
 		menu.add(selectionnerEmploye(ligue));
-	/*	menu.add(modifierEmploye(ligue));
-		menu.add(supprimerEmploye(ligue));  */
+/*		menu.add(modifierEmploye(ligue));
+		menu.add(supprimerEmploye(ligue));*/  
+		menu.add(selectionAdministrateur(ligue));
 		menu.addBack("q");
 		return menu;
 	}
@@ -145,11 +147,11 @@ private List<Ligue> selectionnerLigue()
 
 	private List<Employe> supprimerEmploye(final Ligue ligue)
 	{
-		return new List<>("Supprimer un employé", "s", 
+		return new List<>("Supprimer un employé", "x", 
 				() -> new ArrayList<>(ligue.getEmployes()),
 				(index, element) -> {element.remove();}
 				);
-	}	
+	}
 
 	private List<Employe> modifierEmploye(final Ligue ligue)
 	{
@@ -163,5 +165,12 @@ private List<Ligue> selectionnerLigue()
 	{
 		return new Option("Supprimer", "d", () -> {ligue.remove();});
 	}
-	
+
+	/*Itération 3*/
+	private List<Employe> selectionAdministrateur(Ligue ligue)
+	{
+		return new List<>("Nommer en tant qu'administrateur ", "n", 
+				() -> new ArrayList<>(ligue.getEmployes()),
+				employeConsole.nommerAdmin());
+	}
 }
