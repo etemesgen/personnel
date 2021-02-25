@@ -38,10 +38,10 @@ public class EmployeConsole
 	}
 
 	/* Itération 3 */
-	ListOption<Employe> nommerAdmin()
+/*	ListOption<Employe> nommerAdmin()
 	{
 		return (employe) -> nommerAdmin(employe);		
-	}/**/
+	}*/
 
 	Option editerEmploye(Employe employe)
 	{
@@ -60,7 +60,7 @@ public class EmployeConsole
 	}
 	
 	/* Itération 3 */
-	Option nommerAdmin(Employe employe) 
+/*	Option nommerAdmin(Employe employe) 
 	{
 			Menu menu = new Menu("Définir en tant qu'admin " + employe.getNom(), "e");
 			menu.add(nommerAdministrateur(employe));
@@ -68,7 +68,7 @@ public class EmployeConsole
 			return menu;
 			
 	}
-	
+*/	
 
 	private Option changerNom(final Employe employe)
 	{
@@ -123,7 +123,7 @@ public class EmployeConsole
 		});
 	}
 
-	/* Itération 3 */
+	/* Itération 3 
 	private Option nommerAdministrateur (final Employe employe)
 	{
 		return new Option ("Nommer comme administrateur de la ligue" , "n", () -> 
@@ -131,7 +131,7 @@ public class EmployeConsole
 //			employe.setAdministrateur(gestionPersonnel.getLigue(employe));
 		});
 		
-	}
+	}*/
 
  }
 
