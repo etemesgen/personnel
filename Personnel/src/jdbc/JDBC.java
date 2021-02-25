@@ -87,4 +87,9 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+
+	@Override
+	public void newAdmin(Employe employe) throws SauvegardeImpossible {
+
+	}
 }

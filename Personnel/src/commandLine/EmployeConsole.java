@@ -128,7 +128,7 @@ public class EmployeConsole
 	{
 		return new Option ("Nommer comme administrateur de la ligue" , "n", () -> 
 		{
-			employe.estAdmin(null);
+//			employe.setAdministrateur(gestionPersonnel.getLigue(employe));
 		});
 		
 	}
