@@ -109,16 +109,7 @@ private List<Ligue> selectionnerLigue()
 				(element) -> editerLigue(element)
 				);
 	}
->>>>>>> branch 'master' of https://github.com/etemesgen/personnel.git
 	
-	private List<Ligue> selectionnerLigue()
-{
-	return new List<Ligue>("Sélectionner une ligue", "e", 
-			() -> new ArrayList<>(gestionPersonnel.getLigues()),
-			(element) -> editerLigue(element)
-			);
-}
-
 
 	private Option ajouterEmploye(final Ligue ligue)
 	{
