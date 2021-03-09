@@ -144,7 +144,6 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.dateDepart = dateDepart;
 	}
 	
-
 	/**
 	 * Retourne vrai si le password passé en paramètre est bien celui
 	 * de l'employé.
@@ -153,6 +152,11 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param password le password auquel comparer celui de l'employé.
 	 */
 	
+	public String getPassword ()
+	{
+		return password;
+	}
+
 	public boolean checkPassword(String password)
 	{
 		return this.password.equals(password);

@@ -114,8 +114,11 @@ public class LigueConsole
 				() -> 
 				{
 					ligue.addEmploye(getString("nom : "), 
-						getString("prenom : "), getString("mail : "), 
-						getString("password : "), LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : ")));
+						getString("prenom : "),
+						getString("mail : "), 
+						getString("password : "), 
+						LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), 
+						LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : ")));
 			/*Itération 2 Ajout des dates */	
 					//	LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : "));		
 			}
@@ -142,7 +145,6 @@ public class LigueConsole
 				employeConsole.editerEmploye()
 				);
 	}
-	
 
 	private List<Employe> supprimerEmploye(final Ligue ligue)
 	{

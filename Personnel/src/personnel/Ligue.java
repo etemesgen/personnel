@@ -131,6 +131,14 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrivee, dateDepart);
 		employes.add(employe);
+		
+		try 
+		{
+			this.gestionPersonnel.insert(employe);
+		}
+		catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
 		return employe;
 	}
 	
@@ -161,4 +169,9 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return nom;
 	}
+	
+	public int getId ()
+	{
+		return id;
+	} //Itération 4
 }
