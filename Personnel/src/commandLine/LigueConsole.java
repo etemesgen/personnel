@@ -71,7 +71,7 @@ public class LigueConsole
 		Menu menu = new Menu("Editer " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
-		menu.add(changerAdministrateur(ligue, ligue.getAdministrateur()));
+ //		menu.add(changerAdministrateur(ligue, ligue.getAdministrateur()));
 		menu.add(changerNom(ligue));
 		menu.add(supprimer(ligue));
 		menu.addBack("q");
@@ -82,6 +82,7 @@ public class LigueConsole
 	private Menu editerEmploye(Ligue ligue) {
 		Menu menu = new Menu("Editer " + ligue.getEmployes());
 		menu.add(modifierEmploye(ligue));
+//		menu.add(selectionAdministrateur(ligue));
 		menu.add(supprimerEmploye(ligue));
 		return menu;
 	}
@@ -93,11 +94,22 @@ public class LigueConsole
 }
 	
 //Itération 2 : Changer d'administrateur
-		private Option changerAdministrateur (final Ligue ligue, final Employe admin)
+/*		private Option changerAdministrateur (final Ligue ligue, final Employe admin)
 		{
 			return new Option ("Changer d'administrateur" , "c", () -> {ligue.setAdministrateur(admin);});
 			
 		}
+<<<<<<< HEAD
+=======
+*/
+private List<Ligue> selectionnerLigue()
+	{
+		return new List<Ligue>("Sélectionner une ligue", "e", 
+				() -> new ArrayList<>(gestionPersonnel.getLigues()),
+				(element) -> editerLigue(element)
+				);
+	}
+>>>>>>> branch 'master' of https://github.com/etemesgen/personnel.git
 	
 	private List<Ligue> selectionnerLigue()
 {
@@ -131,8 +143,10 @@ public class LigueConsole
 		menu.add(afficherEmployes(ligue));
 	    menu.add(ajouterEmploye(ligue));
 		menu.add(selectionnerEmploye(ligue));
-	/*	menu.add(modifierEmploye(ligue));
-		menu.add(supprimerEmploye(ligue));  */
+/*		menu.add(modifierEmploye(ligue));
+		menu.add(supprimerEmploye(ligue));*/  
+//		menu.add(selectionAdministrateur(ligue));
+		menu.add(changerAdministrateur(ligue, "c"));
 		menu.addBack("q");
 		return menu;
 	}
@@ -148,11 +162,11 @@ public class LigueConsole
 
 	private List<Employe> supprimerEmploye(final Ligue ligue)
 	{
-		return new List<>("Supprimer un employé", "s", 
+		return new List<>("Supprimer un employé", "x", 
 				() -> new ArrayList<>(ligue.getEmployes()),
 				(index, element) -> {element.remove();}
 				);
-	}	
+	}
 
 	private List<Employe> modifierEmploye(final Ligue ligue)
 	{
@@ -166,5 +180,23 @@ public class LigueConsole
 	{
 		return new Option("Supprimer", "d", () -> {ligue.remove();});
 	}
-	
+
+	/*Itération 3*/
+	/*private List<Employe> selectionAdministrateur(Ligue ligue)
+	{
+		return new List<>("Nommer en tant qu'administrateur ", "n", 
+				() -> new ArrayList<>(ligue.getEmployes()),
+				employeConsole.nommerAdmin());
+	}*/
+	private List<Employe> changerAdministrateur(final Ligue ligue, String key)
+	{
+		List<Employe> liste = new List<>("Changer d'administrateur", key, 
+				() -> new ArrayList<>(ligue.getEmployes()),
+				(index, element) -> {
+					ligue.setAdministrateur(element);
+					gestionPersonnel.changerAdmin(element);
+				});
+		liste.addBack("q");
+		return liste;
+	}
 }

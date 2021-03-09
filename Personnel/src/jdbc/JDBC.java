@@ -94,6 +94,7 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+<<<<<<< HEAD
 	
 	// insertion concernant l'employe
 	@Override
@@ -121,5 +122,11 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}
 		return 0;
+=======
+
+	@Override
+	public void newAdmin(Employe employe) throws SauvegardeImpossible {
+
+>>>>>>> branch 'master' of https://github.com/etemesgen/personnel.git
 	}
 }

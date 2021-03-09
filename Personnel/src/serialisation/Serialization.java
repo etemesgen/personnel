@@ -53,8 +53,13 @@ public class Serialization implements personnel.Passerelle
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int insert(Employe employe) throws SauvegardeImpossible {
 		// TODO Auto-generated method stub
 		return 0;
+=======
+	public void newAdmin(Employe employe) throws SauvegardeImpossible {
+		
+>>>>>>> branch 'master' of https://github.com/etemesgen/personnel.git
 	}
 }

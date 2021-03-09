@@ -37,6 +37,12 @@ public class EmployeConsole
 		return (employe) -> editerEmploye(employe);		
 	}
 
+	/* Itération 3 */
+/*	ListOption<Employe> nommerAdmin()
+	{
+		return (employe) -> nommerAdmin(employe);		
+	}*/
+
 	Option editerEmploye(Employe employe)
 	{
 			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
@@ -47,10 +53,22 @@ public class EmployeConsole
 			menu.add(changerPassword(employe));
 			menu.add(changerDateArrivee(employe));
 			menu.add(changerDateDepart(employe));
+//			menu.add(nommerAdministrateur(employe));
+			menu.add(supprimer(employe));
 			menu.addBack("q");
 			return menu;
 	}
 	
+	/* Itération 3 */
+/*	Option nommerAdmin(Employe employe) 
+	{
+			Menu menu = new Menu("Définir en tant qu'admin " + employe.getNom(), "e");
+			menu.add(nommerAdministrateur(employe));
+			menu.addBack("q");
+			return menu;
+			
+	}
+*/	
 
 	private Option changerNom(final Employe employe)
 	{
@@ -98,12 +116,22 @@ public class EmployeConsole
 		}});
 	}
 	
-/*	private LocalDate LocalDateArrivee(Employe employe) {
-		return employe.getDateArrivee();
+	private Option supprimer(Employe employe)
+	{
+		return new Option("Supprimer", "s", () -> {
+			employe.remove();
+		});
 	}
-	
-	private LocalDate LocalDateDepart(Employe employe) {
-		return employe.getDateDepart();
+
+	/* Itération 3 
+	private Option nommerAdministrateur (final Employe employe)
+	{
+		return new Option ("Nommer comme administrateur de la ligue" , "n", () -> 
+		{
+//			employe.setAdministrateur(gestionPersonnel.getLigue(employe));
+		});
+		
 	}*/
+
  }
 
