@@ -5,6 +5,6 @@ public interface Passerelle
 	public GestionPersonnel getGestionPersonnel();
 	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel)  throws SauvegardeImpossible;
 	public int insert(Ligue ligue) throws SauvegardeImpossible;
-	public int insert(Employe employe) throws SauvegardeImpossible; //lien avec la class JDBC
+	public int insert(Employe employe) throws SauvegardeImpossible; //lien avec la classe JDBC
 	public void newAdmin(Employe employe) throws SauvegardeImpossible;
 }
