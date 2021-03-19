@@ -2,6 +2,9 @@ package personnel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.TreeSet;
+import java.util.SortedSet;
+
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -16,8 +19,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	private static final long serialVersionUID = 4795721718037994734L;
 	private String nom, prenom, password, mail;
 	private Ligue ligue;
+	private SortedSet<Employe> employes; //itération 3
 	private GestionPersonnel gestionPersonnel;
 	private LocalDate dateDepart, dateArrivee;
+	private int id;
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrivee)
 	{
@@ -30,18 +35,28 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.dateArrivee = dateArrivee;  //Itération 1
 		this.dateDepart = dateDepart;  //Itération 1
 	
-	
-	/*Exception pour les dates */
-		try {
-			this.dateArrivee = dateArrivee;
-			this.dateDepart = dateDepart;
+	}
+
+	Employe (GestionPersonnel gestionPersonnel, int id, String nom) //itération 3
+		{
+			this.nom = nom;
+			employes = new TreeSet<>();
+			this.gestionPersonnel = gestionPersonnel;
+			this.id = id;
 		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-		}
 	
+	
+	Employe (GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	{
+		this.gestionPersonnel = gestionPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.mail = mail;
+		this.ligue = ligue;
 	}
 	
+
 	/**
 	 * Retourne vrai si l'employé est administrateur de la ligue 
 	 * passée en paramètre.
@@ -219,4 +234,21 @@ public class Employe implements Serializable, Comparable<Employe>
 			res += ligue.toString();
 		return res + ")";
 	}
+	
+public int getId() { //itération 3
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+
+public void update(String string) throws SauvegardeImpossible { //itération 3
+	 gestionPersonnel.update(this, string);
+	}
+
+public static void add(Employe employe) {
+	
+}
+	
 }

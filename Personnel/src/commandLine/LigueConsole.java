@@ -71,7 +71,7 @@ public class LigueConsole
 		Menu menu = new Menu("Editer " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
- //		menu.add(changerAdministrateur(ligue, ligue.getAdministrateur()));
+ 		menu.add(changerAdministrateur(ligue, "c"));
 		menu.add(changerNom(ligue));
 		menu.add(supprimer(ligue));
 		menu.addBack("q");
@@ -99,8 +99,6 @@ public class LigueConsole
 			return new Option ("Changer d'administrateur" , "c", () -> {ligue.setAdministrateur(admin);});
 			
 		}
-<<<<<<< HEAD
-=======
 */
 private List<Ligue> selectionnerLigue()
 	{
@@ -111,11 +109,12 @@ private List<Ligue> selectionnerLigue()
 	}
 	
 
-	private Option ajouterEmploye(final Ligue ligue)
+	private Option ajouterEmploye(final Ligue ligue) throws SauvegardeImpossible
 	{
 		return new Option("ajouter un employé", "a",
 				() -> 
 				{
+					System.out.println("Ajouter un employé");
 					ligue.addEmploye(getString("nom : "), 
 						getString("prenom : "),
 						getString("mail : "), 
@@ -128,11 +127,21 @@ private List<Ligue> selectionnerLigue()
 		);
 	}
 	
+	private LocalDate getInt(String string) {
+		return null;
+	}
+
+
 	private Menu gererEmployes(Ligue ligue)
 	{
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
-	    menu.add(ajouterEmploye(ligue));
+		try {
+			menu.add(ajouterEmploye(ligue));
+		} catch (SauvegardeImpossible e) {
+			System.err.println("Impossible de sauvegarder cet employé");
+			e.printStackTrace();
+		}
 		menu.add(selectionnerEmploye(ligue));
 /*		menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));*/  
@@ -179,6 +188,7 @@ private List<Ligue> selectionnerLigue()
 				() -> new ArrayList<>(ligue.getEmployes()),
 				employeConsole.nommerAdmin());
 	}*/
+	
 	private List<Employe> changerAdministrateur(final Ligue ligue, String key)
 	{
 		List<Employe> liste = new List<>("Changer d'administrateur", key, 

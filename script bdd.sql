@@ -12,8 +12,6 @@ CREATE DATABASE
 GestionPersonnel;
 
 -- -----------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
 --       TABLE : Employe
 -- -----------------------------------------------------------------------------
 
@@ -31,22 +29,17 @@ CREATE TABLE Employe
    );
    
 -- -----------------------------------------------------------------------------
->>>>>>> branch 'master' of https://github.com/etemesgen/personnel.git
 --       TABLE : Ligue
 -- -----------------------------------------------------------------------------
 
 CREATE TABLE Ligue
  (
    num_ligue INT(11) AUTO_INCREMENT, 
-<<<<<<< HEAD
    nom_ligue VARCHAR(35) NOT NULL ,
-=======
    nom_ligue VARCHAR(35) NOT NULL  ,
->>>>>>> branch 'master' of https://github.com/etemesgen/personnel.git
 	PRIMARY KEY (num_ligue) 
  );
  
-<<<<<<< HEAD
 -- -----------------------------------------------------------------------------
 --       TABLE : Employe
 -- -----------------------------------------------------------------------------
@@ -66,6 +59,4 @@ CREATE TABLE Employe
 	 constraint fk_employe_ligue foreign key (num_ligue) references Ligue (num_ligue)
    );
    
-=======
  foreign key('num_ligue') references Ligue('num_ligue');
->>>>>>> branch 'master' of https://github.com/etemesgen/personnel.git

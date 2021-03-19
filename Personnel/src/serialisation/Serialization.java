@@ -47,17 +47,39 @@ public class Serialization implements personnel.Passerelle
 	}
 	
 	@Override
+	public void newAdmin(Employe employe) throws SauvegardeImpossible {
+
+	} //itération 3
+	
+	@Override
 	public int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		return -1;
-	}
+	} //itération 3
 
 	@Override
 	public int insert(Employe employe) throws SauvegardeImpossible {
-		// TODO Auto-generated method stub
-		return 0;
-}
-	public void newAdmin(Employe employe) throws SauvegardeImpossible {
+		return -1;
+	}
+	
+	@Override
+	public void deleteLigue (Ligue ligue) throws SauvegardeImpossible {
 		
 	}
+	
+	@Override
+	public void deleteEmploye (Employe employe) throws SauvegardeImpossible {
+		
+	}
+	
+	@Override
+	public void updateLigue(Ligue ligue) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public void updateEmploye(Employe employe) throws SauvegardeImpossible {
+		
+	}
+
 }

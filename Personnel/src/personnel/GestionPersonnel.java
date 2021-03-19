@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -35,7 +36,11 @@ public class GestionPersonnel implements Serializable
 	{
 		if (gestionPersonnel == null)
 		{
-			gestionPersonnel = passerelle.getGestionPersonnel();
+			try {
+				gestionPersonnel = passerelle.getGestionPersonnel();
+			} catch (SauvegardeImpossible e) {
+				e.printStackTrace();
+			}
 			if (gestionPersonnel == null)
 				gestionPersonnel = new GestionPersonnel();
 		}
@@ -80,6 +85,11 @@ public class GestionPersonnel implements Serializable
 		return Collections.unmodifiableSortedSet(ligues);
 	}
 
+	public SortedSet<Employe> getEmployes() //itération 4
+	{
+		return Collections.unmodifiableSortedSet(getEmployes());
+	}
+	
 	public Ligue addLigue(String nom) throws SauvegardeImpossible
 	{
 		Ligue ligue = new Ligue(this, nom); 
@@ -87,27 +97,66 @@ public class GestionPersonnel implements Serializable
 		return ligue;
 	}
 	
-	public Ligue addLigue(int id, String nom)
-	{
-		Ligue ligue = new Ligue(this, id, nom);
-		ligues.add(ligue);
-		return ligue;
-	}
 
-	void remove(Ligue ligue)
+	public Employe addEmploye (Ligue id, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) {
+		   Employe employe = new Employe(this, id, nom, prenom, mail, password, dateArrivee, dateDepart);
+		   Employe.add(employe);
+		
+		return employe;
+	} //itération 3
+	
+	public Employe addEmploye(int id, String nom)
 	{
-		ligues.remove(ligue);
-	}
+		Employe employe = new Employe(null, id, nom);
+		Employe.add(employe);
+		return employe;
+	} //itération 3
 	
 	int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		return passerelle.insert(ligue);
-	}
-
-	void insert (Employe employe) throws SauvegardeImpossible
+	} //itération 3
+	
+	int insert(Employe employe) throws SauvegardeImpossible 
 	{
-		passerelle.insert(employe);
-	} //Itération 4
+		return passerelle.insert(employe);
+	} //itération 3
+	
+	void update(Ligue ligue) throws SauvegardeImpossible
+	{
+		passerelle.updateLigue(ligue);
+	} //itération 3
+	
+	void update(Employe employe, String string) throws SauvegardeImpossible
+	{
+		passerelle.updateEmploye(employe);
+	} //itération 3
+	
+	void delete(Employe employe)
+	{
+		try {
+			passerelle.deleteEmploye(employe);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
+		}
+	} //itération 3
+	
+	void delete(Ligue ligue)
+	{
+		try {
+			passerelle.deleteLigue(ligue);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
+		}
+	} //itération 3
+	
+	void remove(Ligue ligue)
+	{	
+		gestionPersonnel.delete(ligue);
+		ligues.remove(ligue);
+	}
 	/**
 	 * Retourne le root (super-utilisateur).
 	 * @return le root.
