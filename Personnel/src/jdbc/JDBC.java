@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import personnel.*;
 
@@ -40,15 +43,28 @@ public class JDBC implements Passerelle
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
 			while (ligues.next())
-				gestionPersonnel.addLigue(ligues.getInt(1), ligues.getString(2));
+				gestionPersonnel.addLigue(ligues.getInt("num_ligue"), ligues.getString("nom_ligue"));
+			PreparedStatement response = connection.prepareStatement("Select * from employe where num_ligue = ?");
+			response.setInt(1, ligues.getInt("num_ligue"));
+			ResultSet employe = response.executeQuery();
+			Ligue ligue = gestionPersonnel.getLigues().last();
 			
-		// requête qui séléctionnne toutes les données de l'employé
-			String requete2 = "select * from employe";
-			Statement instruction2 = connection.createStatement();
-			ResultSet employe = instruction2.executeQuery(requete2);
-			while (employe.next())
-				gestionPersonnel.addLigue(employe.getInt(1), employe.getString(2));
+			while (employe.next()) {
+				int id = employe.getInt ("id_employe");
+				String nom = employe.getString ("nom_employe");
+				String prenom = employe.getString("prenom_employe");
+				String mail = employe.getString("mail");
+				String password = employe.getString("password");
+				LocalDate dateArrivee = LocalDate.parse(employe.getString("dateArrivee_employe"));
+				LocalDate dateDepart = employe.getString("dateDepart_employe") != null ? LocalDate.parse(employe.getString("dateDepart_employe")) : null;
+				Employe employes = ligue.addEmploye(nom, prenom, mail, password, dateArrivee, dateDepart, id);
+				    
+				    if(employe.getBoolean("admin")) {
+				    	ligue.setAdministrateur(employes);
+			}
 		}
+	
+	}
 		catch (SQLException e)
 		{
 			System.out.println(e);
@@ -75,6 +91,7 @@ public class JDBC implements Passerelle
 		}
 	}
 	
+	//insertion ligue
 	@Override
 	public int insert(Ligue ligue) throws SauvegardeImpossible 
 	{
@@ -95,7 +112,27 @@ public class JDBC implements Passerelle
 		}		
 	}
 	
-	// insertion concernant l'employe
+	//suppression de ligue
+	@Override
+	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible 
+	{	
+		try
+		{
+			PreparedStatement listLigue;
+			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE num_ligue = ?");
+			listLigue.setInt(1, ligue.getId());
+			listLigue.executeUpdate();
+			System.out.println("Ligue " + ligue.getNom() + " supprimé");
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
+		
+	}
+	
+	// insertion employe
 	@Override
 	public int insert(Employe employe) throws SauvegardeImpossible
 	{
@@ -107,10 +144,10 @@ public class JDBC implements Passerelle
 			instruction2.setString(2, employe.getPrenom());
 			instruction2.setString(3, employe.getMail());
 			instruction2.setString(4, employe.getPassword());
-			/*instruction2.setInt(5, employe.getNiveauPrivilege());*/
+//			instruction2.setInt(5, employe.getNiveauPrivilege());
 			instruction2.setInt(6, employe.getLigue().getId());
-			/*instruction2.setLocalDate(7, employe.getDateArrivee());
-			instruction2.setLocalDate(8, employe.getDateDepart());*/
+			instruction2.setString(7, String.valueOf(employe.getDateArrivee()));
+			instruction2.setString(8, String.valueOf(employe.getDateDepart()));
 			instruction2.executeUpdate();
 			ResultSet id = instruction2.getGeneratedKeys();
 			id.next();
@@ -121,9 +158,96 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}
 		return 0;
-}
+	}
+	
+	public void updateEmploye(Employe employe, String dataList) throws SauvegardeImpossible 
+	{
+		try 
+		{
+			PreparedStatement instruction;
+		    instruction = connection.prepareStatement("UPDATE employe SET " + dataList + "= ? WHERE id_employe = ?");
+		
+				Map <String, String> map = new HashMap<>();
+						map.put("nom_employe", employe.getNom());
+						map.put("prenom_employe", employe.getPrenom());
+						map.put("mail", employe.getMail());
+						map.put("password", employe.getPassword());
+				//		map.put("niveau_privilege", employe.getNiveauPrivilege());
+						map.put("date_arrivee", String.valueOf(employe.getDateArrivee()));
+						map.put("date_depart", String.valueOf(employe.getDateDepart()));
+			instruction.setString(1, map.get(dataList));
+		    instruction.setInt(2, employe.getId());
+				instruction.executeUpdate();
+			}
+		
+		catch (SQLException e)
+		{
+			throw new SauvegardeImpossible(e);
+		}
+	}
+	
+	@Override
+	public void deleteEmploye(Employe employe) throws SauvegardeImpossible 
+	{	
+		try
+		{
+			PreparedStatement listEmploye;
+			listEmploye = connection.prepareStatement("DELETE FROM employe WHERE id_employe = ?");
+			listEmploye.setInt(1, employe.getId());
+			listEmploye.executeUpdate();
+			System.out.println("Ligue " + employe.getNom() + " supprimé");
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
+		
+	}
 	@Override
 	public void newAdmin(Employe employe) throws SauvegardeImpossible {
 
 	}
+
+	public Employe getNiveauPrivilege(Employe niveau_privilege) throws SauvegardeImpossible
+{
+		try {
+			Statement intruction = connection.createStatement();
+			String requete = "SELECT * FROM employe WHERE niveau_privilege = 1";
+			ResultSet response = intruction.executeQuery(requete);
+		
+			String nom = response.getString("nom_employe");
+			String prenom = response.getString("prenom_employe");
+			String mail =  response.getString("mail");
+			String password = response.getString("password");
+			niveau_privilege.setNom(nom);
+			niveau_privilege.setPrenom(prenom);
+			niveau_privilege.setMail(mail);
+			niveau_privilege.setPassword(password);
+			return niveau_privilege;
+		}
+		catch (SQLException e) {
+		e.printStackTrace();
+		throw new SauvegardeImpossible(e);
+		}
+	}
+
+	@Override
+	public void updateLigue(Ligue ligue) throws SauvegardeImpossible {
+		
+		
+	}
+
+	@Override
+	public void updateEmploye(Employe employe) throws SauvegardeImpossible {
+		
+		
+	}
+
+	@Override
+	public int setNiveauPrivilege(Employe employe) throws SauvegardeImpossible {
+		
+		return 0;
+	}
 }
+

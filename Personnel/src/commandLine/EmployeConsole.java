@@ -3,17 +3,13 @@ package commandLine;
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 import java.time.LocalDate; /*Itération 2*/
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import commandLineMenus.List;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.DateImpossible;
 import personnel.Employe;
 import personnel.GestionPersonnel;
-import personnel.Ligue;
+
 
 public class EmployeConsole 
 {
