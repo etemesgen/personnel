@@ -128,9 +128,18 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @return l'employÃ© crÃ©Ã©. 
 	 */
 
-	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart, int id2)
+	public Employe addEmploye(String nom, String prenom, String mail, String password) throws SauvegardeImpossible
+	{
+		Employe employe = new Employe (this.gestionPersonnel, this, nom, prenom, mail, password);
+		employe.setId(gestionPersonnel.insert(employe));
+		employes.add(employe);
+		return employe;
+	}
+	
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart)
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrivee, dateDepart);
+		employe.setId(id);
 		employes.add(employe);
 		
 		try 
@@ -174,5 +183,5 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	public int getId ()
 	{
 		return id;
-	} //Itération 4
+	} //Itération 3
 }

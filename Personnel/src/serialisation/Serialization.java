@@ -55,7 +55,7 @@ public class Serialization implements personnel.Passerelle
 	public int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		return -1;
-	} //itération 4
+	} //itération 3
 
 	@Override
 	public int insert(Employe employe) throws SauvegardeImpossible {
@@ -82,8 +82,4 @@ public class Serialization implements personnel.Passerelle
 		
 	}
 
-	@Override
-	public int setNiveauPrivilege(Employe employe) throws SauvegardeImpossible {
-		return 0;
-	}
 }

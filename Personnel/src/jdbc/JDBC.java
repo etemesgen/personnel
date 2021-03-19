@@ -34,7 +34,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public GestionPersonnel getGestionPersonnel() 
+	public GestionPersonnel getGestionPersonnel() throws SauvegardeImpossible 
 	{
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
@@ -43,7 +43,7 @@ public class JDBC implements Passerelle
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
 			while (ligues.next())
-				gestionPersonnel.addLigue(ligues.getInt("num_ligue"), ligues.getString("nom_ligue"));
+				gestionPersonnel.addLigue(ligues.getString("nom_ligue"));
 			PreparedStatement response = connection.prepareStatement("Select * from employe where num_ligue = ?");
 			response.setInt(1, ligues.getInt("num_ligue"));
 			ResultSet employe = response.executeQuery();
@@ -57,7 +57,7 @@ public class JDBC implements Passerelle
 				String password = employe.getString("password");
 				LocalDate dateArrivee = LocalDate.parse(employe.getString("dateArrivee_employe"));
 				LocalDate dateDepart = employe.getString("dateDepart_employe") != null ? LocalDate.parse(employe.getString("dateDepart_employe")) : null;
-				Employe employes = ligue.addEmploye(nom, prenom, mail, password, dateArrivee, dateDepart, id);
+				Employe employes = ligue.addEmploye(nom, prenom, mail, password);
 				    
 				    if(employe.getBoolean("admin")) {
 				    	ligue.setAdministrateur(employes);
@@ -139,15 +139,14 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction2;
-			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail, password, niveau_privilege, date_arrivee, date_depart, num_ligue) values (?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail, password, date_arrivee, date_depart, num_ligue) values (?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction2.setString(1, employe.getNom());
 			instruction2.setString(2, employe.getPrenom());
 			instruction2.setString(3, employe.getMail());
 			instruction2.setString(4, employe.getPassword());
-//			instruction2.setInt(5, employe.getNiveauPrivilege());
-			instruction2.setInt(6, employe.getLigue().getId());
-			instruction2.setString(7, String.valueOf(employe.getDateArrivee()));
-			instruction2.setString(8, String.valueOf(employe.getDateDepart()));
+			instruction2.setInt(5, employe.getLigue().getId());
+			instruction2.setString(6, String.valueOf(employe.getDateArrivee()));
+			instruction2.setString(7, String.valueOf(employe.getDateDepart()));
 			instruction2.executeUpdate();
 			ResultSet id = instruction2.getGeneratedKeys();
 			id.next();
@@ -172,7 +171,6 @@ public class JDBC implements Passerelle
 						map.put("prenom_employe", employe.getPrenom());
 						map.put("mail", employe.getMail());
 						map.put("password", employe.getPassword());
-				//		map.put("niveau_privilege", employe.getNiveauPrivilege());
 						map.put("date_arrivee", String.valueOf(employe.getDateArrivee()));
 						map.put("date_depart", String.valueOf(employe.getDateDepart()));
 			instruction.setString(1, map.get(dataList));
@@ -209,22 +207,21 @@ public class JDBC implements Passerelle
 
 	}
 
-	public Employe getNiveauPrivilege(Employe niveau_privilege) throws SauvegardeImpossible
+	public Employe getAdmin(Employe estAdmin) throws SauvegardeImpossible
 {
 		try {
 			Statement intruction = connection.createStatement();
-			String requete = "SELECT * FROM employe WHERE niveau_privilege = 1";
+			String requete = "SELECT * FROM employe WHERE niveau_privilege = 2";
 			ResultSet response = intruction.executeQuery(requete);
-		
 			String nom = response.getString("nom_employe");
 			String prenom = response.getString("prenom_employe");
 			String mail =  response.getString("mail");
 			String password = response.getString("password");
-			niveau_privilege.setNom(nom);
-			niveau_privilege.setPrenom(prenom);
-			niveau_privilege.setMail(mail);
-			niveau_privilege.setPassword(password);
-			return niveau_privilege;
+			estAdmin.setNom(nom);
+			estAdmin.setPrenom(prenom);
+			estAdmin.setMail(mail);
+			estAdmin.setPassword(password);
+			return estAdmin;
 		}
 		catch (SQLException e) {
 		e.printStackTrace();
@@ -243,11 +240,6 @@ public class JDBC implements Passerelle
 		
 		
 	}
-
-	@Override
-	public int setNiveauPrivilege(Employe employe) throws SauvegardeImpossible {
-		
-		return 0;
-	}
+	
 }
 

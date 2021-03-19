@@ -71,7 +71,7 @@ public class LigueConsole
 		Menu menu = new Menu("Editer " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
- 		menu.add(changerAdministrateur(ligue, null));
+ 		menu.add(changerAdministrateur(ligue, "c"));
 		menu.add(changerNom(ligue));
 		menu.add(supprimer(ligue));
 		menu.addBack("q");
@@ -120,7 +120,7 @@ private List<Ligue> selectionnerLigue()
 						getString("mail : "), 
 						getString("password : "), 
 						LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), 
-						LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : ")), 0);
+						LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : ")));
 			/*Itération 2 Ajout des dates */	
 					//	LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : "));		
 			}

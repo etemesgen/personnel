@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.TreeSet;
 import java.util.SortedSet;
 
+
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
  * être administrateurs des employés de leur ligue.
@@ -18,8 +19,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	private static final long serialVersionUID = 4795721718037994734L;
 	private String nom, prenom, password, mail;
 	private Ligue ligue;
-	private Employe niveau_privilege; //itération 4
-	private SortedSet<Employe> employes; //itération 4
+	private SortedSet<Employe> employes; //itération 3
 	private GestionPersonnel gestionPersonnel;
 	private LocalDate dateDepart, dateArrivee;
 	private int id;
@@ -35,29 +35,27 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.dateArrivee = dateArrivee;  //Itération 1
 		this.dateDepart = dateDepart;  //Itération 1
 	
-	
-	/*Exception pour les dates */
-		try {
-			this.dateArrivee = dateArrivee;
-			this.dateDepart = dateDepart;
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			}
+	}
 
-/*		public Employe(GestionPersonnel gestionPersonnel, int id, String nom) //itération 4
+	Employe (GestionPersonnel gestionPersonnel, int id, String nom) //itération 3
 		{
 			this.nom = nom;
 			employes = new TreeSet<>();
 			this.gestionPersonnel = gestionPersonnel;
-			niveau_privilege = gestionPersonnel.getNiveauPrivilege();
 			this.id = id;
-		}*/
+		}
+	
+	
+	Employe (GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	{
+		this.gestionPersonnel = gestionPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.mail = mail;
+		this.ligue = ligue;
 	}
 	
-	public Employe(int id2, String nom2) {
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * Retourne vrai si l'employé est administrateur de la ligue 
@@ -237,7 +235,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		return res + ")";
 	}
 	
-public int getId() { //itération 4
+public int getId() { //itération 3
 	return id;
 }
 
@@ -245,20 +243,12 @@ public void setId(int id) {
 	this.id = id;
 }
 
-public void update(String string) throws SauvegardeImpossible { //itération 4
+public void update(String string) throws SauvegardeImpossible { //itération 3
 	 gestionPersonnel.update(this, string);
 	}
 
-public Employe getNiveauPrivilege() {
-	return niveau_privilege;
-}
-
-public void setNiveauPrivilege(Employe niveau_privilege) {
-	this.niveau_privilege = niveau_privilege;
-	}
-
 public static void add(Employe employe) {
-	// TODO Auto-generated method stub
 	
 }
+	
 }

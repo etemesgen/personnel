@@ -36,7 +36,11 @@ public class GestionPersonnel implements Serializable
 	{
 		if (gestionPersonnel == null)
 		{
-			gestionPersonnel = passerelle.getGestionPersonnel();
+			try {
+				gestionPersonnel = passerelle.getGestionPersonnel();
+			} catch (SauvegardeImpossible e) {
+				e.printStackTrace();
+			}
 			if (gestionPersonnel == null)
 				gestionPersonnel = new GestionPersonnel();
 		}
@@ -93,46 +97,40 @@ public class GestionPersonnel implements Serializable
 		return ligue;
 	}
 	
-	public Ligue addLigue(int id, String nom)
-	{
-		Ligue ligue = new Ligue(this, id, nom);
-		ligues.add(ligue);
-		return ligue;
-	}
 
-	public Employe addEmploye(Ligue id, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) {
+	public Employe addEmploye (Ligue id, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) {
 		   Employe employe = new Employe(this, id, nom, prenom, mail, password, dateArrivee, dateDepart);
 		   Employe.add(employe);
 		
 		return employe;
-	} //itération 4
+	} //itération 3
 	
 	public Employe addEmploye(int id, String nom)
 	{
-		Employe employe = new Employe(id, nom);
+		Employe employe = new Employe(null, id, nom);
 		Employe.add(employe);
 		return employe;
-	} //itération 4
+	} //itération 3
 	
 	int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		return passerelle.insert(ligue);
-	}
+	} //itération 3
 	
 	int insert(Employe employe) throws SauvegardeImpossible 
 	{
 		return passerelle.insert(employe);
-	} //Itération 4
+	} //itération 3
 	
 	void update(Ligue ligue) throws SauvegardeImpossible
 	{
 		passerelle.updateLigue(ligue);
-	} //Itération 4
+	} //itération 3
 	
 	void update(Employe employe, String string) throws SauvegardeImpossible
 	{
 		passerelle.updateEmploye(employe);
-	} //Itération 4
+	} //itération 3
 	
 	void delete(Employe employe)
 	{
@@ -142,7 +140,7 @@ public class GestionPersonnel implements Serializable
 			
 			e.printStackTrace();
 		}
-	}
+	} //itération 3
 	
 	void delete(Ligue ligue)
 	{
@@ -152,7 +150,7 @@ public class GestionPersonnel implements Serializable
 			
 			e.printStackTrace();
 		}
-	}
+	} //itération 3
 	
 	void remove(Ligue ligue)
 	{	
