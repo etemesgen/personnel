@@ -39,32 +39,32 @@ public class JDBC implements Passerelle
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
-			String requete = "select * from ligue";
+			String requete = "SELECT * FROM ligue";
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
-			while (ligues.next())
+			while (ligues.next()) {
 				gestionPersonnel.addLigue(ligues.getString("nom_ligue"));
-			PreparedStatement response = connection.prepareStatement("Select * from employe where num_ligue = ?");
+			PreparedStatement response = connection.prepareStatement("SELECT * FROM employe where num_ligue = ?");
 			response.setInt(1, ligues.getInt("num_ligue"));
 			ResultSet employe = response.executeQuery();
 			Ligue ligue = gestionPersonnel.getLigues().last();
-			
+	
 			while (employe.next()) {
 				int id = employe.getInt ("id_employe");
 				String nom = employe.getString ("nom_employe");
-				String prenom = employe.getString("prenom_employe");
+				String prenom = employe.getString("prenom");
 				String mail = employe.getString("mail");
 				String password = employe.getString("password");
-				LocalDate dateArrivee = LocalDate.parse(employe.getString("dateArrivee_employe"));
-				LocalDate dateDepart = employe.getString("dateDepart_employe") != null ? LocalDate.parse(employe.getString("dateDepart_employe")) : null;
+				LocalDate dateArrivee = LocalDate.parse(employe.getString("date_arrivee")); 
+				LocalDate dateDepart =  LocalDate.parse(employe.getString("date_depart"));
 				Employe employes = ligue.addEmploye(nom, prenom, mail, password);
 				    
 				    if(employe.getBoolean("admin")) {
 				    	ligue.setAdministrateur(employes);
 			}
 		}
-	
 	}
+}
 		catch (SQLException e)
 		{
 			System.out.println(e);
@@ -98,7 +98,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("insert into ligue (nom_ligue) values(?)", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("INSERT INTO ligue (nom_ligue) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, ligue.getNom());		
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
