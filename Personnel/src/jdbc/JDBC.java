@@ -42,9 +42,10 @@ public class JDBC implements Passerelle
 			String requete = "SELECT * FROM ligue";
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
-			while (ligues.next())
+			while (ligues.next()) {
 				gestionPersonnel.addLigue(ligues.getString(2));
-			
+				System.out.println(ligues.getString(2));
+			}
 		// requête qui séléctionnne toutes les données de l'employé
 			String requete2 = "select * from employe";
 			Statement instruction2 = connection.createStatement();
