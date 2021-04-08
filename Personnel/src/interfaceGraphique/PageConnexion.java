@@ -2,22 +2,15 @@ package interfaceGraphique;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 
 public class PageConnexion {
 	public static void main(String[] args)
 	{
 		JLabel l = new JLabel("Identifiez-vous", JLabel.CENTER); //Créer le texte et le centrer
 		l.setFont(new Font("Rockwell Nova", Font.PLAIN, 35));
-	/*	Border border = l.getBorder();
-		Border margin = new EmptyBorder(10,10,10,10);
-		l.setBorder(new CompoundBorder(border, margin));*/
 		
 		JFrame f = new JFrame(); //Créer une instance de JFrame  
 		f.setTitle("Page de connexion");
