@@ -22,7 +22,7 @@ public class PageConnexion {
 		JFrame frame = new JFrame(); //Créer une instance de JFrame  
 		frame.setTitle("Page de connexion");
 		frame.setSize(800, 500);
-		frame.getContentPane().setBackground(Color.YELLOW);
+	//	frame.getContentPane().setBackground(Color.YELLOW);
 		frame.add(label); //Ajouter label à frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -43,6 +43,7 @@ public class PageConnexion {
 		frame.add(button2);//Ajouter bouton dans JFrame  
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.YELLOW); 
 		JTextField field = new JTextField(" Identifiant : ", 20);
 		field.setBounds(250,100, 300, 50);
 		field.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
@@ -62,6 +63,7 @@ public class PageConnexion {
         frame.add(panel);
         
         JPanel panel2 = new JPanel();
+        panel2.setBackground(Color.YELLOW); 
 		JTextField field2 = new JTextField(" Mot de passe : ", 20);
 		field2.setBounds(250,200, 300, 50);
 		field2.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
@@ -93,7 +95,7 @@ public class PageConnexion {
                  }
          });
          */
-         
+  
          frame.setVisible(true);//Rendre le frame visible
 	}
 }
