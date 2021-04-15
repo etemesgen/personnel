@@ -1,6 +1,7 @@
 package interfaceGraphique;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -12,7 +13,8 @@ public class MenuPrincipal {
 	public static void main(String[] args)
 	{
 		JLabel label = new JLabel("Gestion du personnel des ligues", JLabel.CENTER);
-		label.setBounds(100, 50, 0, 0);
+		label.setPreferredSize(new Dimension(50, 75));
+		label.setBounds(50, 30, 0, 0);
 		label.setFont(new Font("Rockwell Nova", Font.BOLD, 40));
 		label.setVerticalAlignment(JLabel.TOP); 
 		label.setForeground(Color.RED);
