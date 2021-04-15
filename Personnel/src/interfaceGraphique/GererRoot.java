@@ -20,12 +20,12 @@ public class GererRoot {
 		label.setBackground(Color.RED);
 		
 		JFrame frame = new JFrame(); //Créer une instance de JFrame  
-		frame.setTitle("Accueil");
+		frame.setTitle("Gérer le Root");
 		frame.setSize(800, 500);
 		frame.getContentPane().setBackground(Color.YELLOW);
 		frame.add(label); //Ajouter label à frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		  frame.setVisible(true);
+		frame.setVisible(true);
 		
 		JButton button = new JButton("Modifier le Root");//créer une instance de JButton  
 		button.setBounds(250,280,300, 40);//x axes, y axes, largeur, hauteur  
@@ -42,7 +42,7 @@ public class GererRoot {
 		frame.add(button2);//Ajouter bouton dans JFrame  
 		
 		// TABLE
-	/*	String[][] data = {
+		String[][] data = {
 		            { "1", "Bob", "Marley", "bob.marley@outlook.com" }
 		        };
 		  
@@ -62,7 +62,5 @@ public class GererRoot {
 		        JTableHeader tableHeader = table.getTableHeader();
 		        Font headerFont = new Font("Rockwell Nova", Font.PLAIN, 15);
 		        tableHeader.setFont(headerFont);
-		*/        
-		   //     frame.setVisible(true);//Rendre le frame visible
 	}
 }
