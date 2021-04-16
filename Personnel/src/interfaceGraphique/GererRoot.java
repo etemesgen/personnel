@@ -13,20 +13,19 @@ import javax.swing.table.JTableHeader;
 
 public class GererRoot {
 	public static void main(String[] args)
-	{
-		JLabel label = new JLabel("Gérer le Root", JLabel.CENTER); //Créer le texte et le centrer
-		label.setFont(new Font("Rockwell Nova", Font.PLAIN, 35));
-		label.setVerticalAlignment(JLabel.TOP);
-		label.setBackground(Color.RED);
-		
+	{	
 		JFrame frame = new JFrame(); //Créer une instance de JFrame  
 		frame.setTitle("Gérer le Root");
 		frame.setSize(800, 500);
 		frame.getContentPane().setBackground(Color.YELLOW);
-		frame.add(label); //Ajouter label à frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
 		
+		JLabel label = new JLabel("Gérer le Root", JLabel.CENTER); //Créer le texte et le centrer
+		label.setFont(new Font("Rockwell Nova", Font.PLAIN, 35));
+		label.setVerticalAlignment(JLabel.TOP);
+		label.setForeground(Color.RED);
+		frame.add(label);
+	
 		JButton button = new JButton("Modifier le Root");//créer une instance de JButton  
 		button.setBounds(250,280,300, 40);//x axes, y axes, largeur, hauteur  
 		button.setBackground(Color.GRAY); //Définir la couleur de fond  
@@ -45,13 +44,12 @@ public class GererRoot {
 		String[][] data = {
 		            { "1", "Bob", "Marley", "bob.marley@outlook.com" }
 		        };
-		  
 		        // Column Names
 		        String[] columnNames = { "ID", "NOM", "PRENOM", "MAIL" };
-		  
+		 
 		        // Initializing the JTable
 		        JTable table = new JTable(data, columnNames);
-		        table.setBounds(30, 40, 200, 300);
+		        table.setBounds(30, 240, 0, 0);
 		        table.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
 		    
 		        // adding it to JScrollPane
@@ -62,5 +60,8 @@ public class GererRoot {
 		        JTableHeader tableHeader = table.getTableHeader();
 		        Font headerFont = new Font("Rockwell Nova", Font.PLAIN, 15);
 		        tableHeader.setFont(headerFont);
+		        
+		    
+		        frame.setVisible(true);
 	}
 }
