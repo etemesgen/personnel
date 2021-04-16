@@ -1,7 +1,7 @@
 # Application de gestion du personnel des ligues
 
-- Un des responsables de la M2L, utilise une application pour gérer les employés des ligues. 
-* L’application est mise à votre disposition par le biais des ressources suivantes :
+ Un des responsables de la M2L, utilise une application pour gérer les employés des ligues. 
+ L’application est mise à votre disposition par le biais des ressources suivantes :
 
 * Le code source sur Github.
 * La documentation.
