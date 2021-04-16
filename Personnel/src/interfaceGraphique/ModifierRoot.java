@@ -147,7 +147,7 @@ public class ModifierRoot {
 	    
 	    JPanel panel6 = new JPanel();
 	    panel6.setBackground(Color.YELLOW); 
-		JTextField field6 = new JTextField(" Date ddépart : jj/mm/aaaa ", 10);
+		JTextField field6 = new JTextField(" Date de départ : jj/mm/aaaa ", 10);
 		field6.setBounds(240, 335, 300, 40);
 		field6.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
 		frame.add(field6);
