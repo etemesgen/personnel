@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 public class Quitter {
 	public static void main(String[] args)
 	{
-		JLabel label = new JLabel("Gestion du personnel des ligues", JLabel.CENTER);
+		/*JLabel label = new JLabel("<html>Quitter <br> Séléctionner une option : </html>", JLabel.CENTER);
+		label.setText(label.getText()+"Séléctionner une option :");*/
+		JLabel label = new JLabel("Quitter", JLabel.CENTER);
 		label.setPreferredSize(new Dimension(50, 75));
 		label.setBounds(50, 30, 0, 0);
 		label.setFont(new Font("Rockwell Nova", Font.BOLD, 40));
@@ -26,11 +28,11 @@ public class Quitter {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		JLabel label1 = new JLabel("Sélectionner une option :", JLabel.CENTER); 
+		/*JLabel label1 = new JLabel("Sélectionner une option :", JLabel.CENTER); 
 		label1.setFont(new Font("Rockwell Nova", Font.BOLD, 35));
 		label1.setVerticalAlignment(JLabel.TOP);
 		label1.setForeground(Color.BLACK);
-		frame.add(label1);
+		frame.add(label1);*/
 				
 
 		JButton button = new JButton("Quitter et enregister");
