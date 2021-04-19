@@ -250,6 +250,18 @@ public class JDBC implements Passerelle
 		
 		
 	}
+
+	@Override
+	public void removeAdmin(Ligue ligue) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setAdmin(Employe employe) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

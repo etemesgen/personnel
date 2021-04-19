@@ -162,9 +162,9 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * de la ligue.
 	 */
 	
-	public void remove()
+	public void removeAdmin()
 	{
-		gestionPersonnel.remove(this);
+		gestionPersonnel.removeAdmin(this);
 	}
 	
 
@@ -184,4 +184,9 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return id;
 	} //Itération 3
+	
+	public void setAdmin(Employe employe) 
+	{
+		gestionPersonnel.setAdmin(employe);
+	}
 }

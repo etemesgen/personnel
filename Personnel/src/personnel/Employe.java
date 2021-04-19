@@ -244,7 +244,7 @@ public void setId(int id) {
 }
 
 public void update(String string) throws SauvegardeImpossible { //itération 3
-	 gestionPersonnel.update(this, string);
+	 gestionPersonnel.updateE(this, string);
 	}
 
 public static void add(Employe employe) {

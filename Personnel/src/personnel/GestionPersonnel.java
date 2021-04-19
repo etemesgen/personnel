@@ -127,7 +127,7 @@ public class GestionPersonnel implements Serializable
 		passerelle.updateLigue(ligue);
 	} //itération 3
 	
-	void update(Employe employe, String string) throws SauvegardeImpossible
+	public void updateE(Employe employe, String string) throws SauvegardeImpossible
 	{
 		passerelle.updateEmploye(employe);
 	} //itération 3
@@ -177,5 +177,39 @@ public class GestionPersonnel implements Serializable
 		{
 			e.printStackTrace();
 		}
+	}
+	void setAdmin(Employe employe)
+	{
+		try
+		{
+			passerelle.setAdmin(employe);
+		}
+		catch(SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	void removeAdmin(Ligue ligue)
+	{
+		try {
+			passerelle.removeAdmin(ligue);
+		} catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean haveWritePermission(Ligue ligue, Employe employe) {
+		if(employe.estRoot()) {
+			return true;
+		}
+		else if(ligue.getAdministrateur().equals(employe))
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 }

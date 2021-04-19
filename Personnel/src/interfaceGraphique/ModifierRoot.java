@@ -1,164 +1,238 @@
 package interfaceGraphique;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import personnel.Employe;
+import personnel.GestionPersonnel;
+import personnel.SauvegardeImpossible;
 
 public class ModifierRoot {
-	public static void main(String[] args)
-	{
-		JLabel label = new JLabel("Modifier le root", JLabel.CENTER); 
-		label.setFont(new Font("Rockwell Nova", Font.BOLD, 40));
-		label.setVerticalAlignment(JLabel.TOP); 
-		label.setForeground(Color.RED);
-		
-		
-		JFrame frame = new JFrame(); //Créer une instance de JFrame  
-		frame.setTitle("Menu root");
-		frame.setSize(800, 500);
-		frame.getContentPane().setBackground(Color.YELLOW);
-		frame.add(label); //Ajouter label à frame
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		JButton button = new JButton("Retour");//créer une instance de JButton  
-		button.setBounds(235, 390, 320, 50);//x axes, y axes, largeur, hauteur  
-		button.setBackground(Color.BLACK); //Définir la couleur de fond  
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Rockwell Nova", Font.ITALIC, 15));
-		frame.add(button);//Ajouter bouton dans JFrame  
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.YELLOW); 
-		JTextField field = new JTextField(" Nom : ", 20);
-		field.setBounds(240, 60, 300, 40);
-		field.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field);
-		field.setVisible(true);
-		
-		field.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel.add(label); 
-	    frame.add(panel);
-	    
-	    JPanel panel2 = new JPanel();
-	    panel2.setBackground(Color.YELLOW); 
-		JTextField field2 = new JTextField(" Prénom : ", 20);
-		field2.setBounds(240, 115, 300, 40);
-		field2.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field2);
-		field2.setVisible(true);
-	    
-	
-		field2.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field2.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel2.add(label); 
-	    frame.add(panel2);
-		
-	    JPanel panel3 = new JPanel();
-	    panel3.setBackground(Color.YELLOW); 
-		JTextField field3 = new JTextField(" Mail : ", 100);
-		field3.setBounds(240, 170, 300, 40);
-		field3.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field3);
-		field3.setVisible(true);
-	    
-	
-		field3.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field3.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel3.add(label); 
-	    frame.add(panel3);
-	    
-	    JPanel panel4 = new JPanel();
-	    panel4.setBackground(Color.YELLOW); 
-		JTextField field4 = new JTextField(" Mot de passe : ", 100);
-		field4.setBounds(240, 225, 300, 40);
-		field4.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field4);
-		field4.setVisible(true);
-	    
-	
-		field4.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field4.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel4.add(label); 
-	    frame.add(panel4);
-	    
-	    JPanel panel5 = new JPanel();
-	    panel5.setBackground(Color.YELLOW); 
-		JTextField field5 = new JTextField(" Date d'arrivée : jj/mm/aaaa ", 10);
-		field5.setBounds(240, 280, 300, 40);
-		field5.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field5);
-		field5.setVisible(true);
-	    
-	
-		field5.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field5.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel5.add(label); 
-	    frame.add(panel5);
-	    
-	    JPanel panel6 = new JPanel();
-	    panel6.setBackground(Color.YELLOW); 
-		JTextField field6 = new JTextField(" Date de départ : jj/mm/aaaa ", 10);
-		field6.setBounds(240, 335, 300, 40);
-		field6.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field6);
-		field5.setVisible(true);
-	    
-	
-		field6.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field6.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel6.add(label);
-	    frame.add(panel6);
-	    frame.setVisible(true);
+ 
+private GestionPersonnel gestionPersonnel;
+private JTextField nom;
+private JTextField prenom;
+private JTextField email;
+private JTextField pass;
+private Employe connectedEmploye;
+private JTextField arrive;
+private JTextField depart;
+	public ModifierRoot(GestionPersonnel gestionPersonnel, Employe connectedEmploye) {
+		  this.gestionPersonnel = gestionPersonnel;
+		  this.connectedEmploye = connectedEmploye;
 	}
+	
+	public JFrame frame()
+	{
+		JFrame root = new JFrame();
+		root.getContentPane().setBackground(Color.decode("#f2ef13"));
+		root.setTitle("Editer le root");
+		root.setSize(700,700);
+		root.setLocationRelativeTo(null);
+		root.setLayout(new GridBagLayout());
+		root.setJMenuBar(menuBar());
+		root.add(panelContainer());
+		root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		return root;
+	}
+	private JMenuBar menuBar()
+	 {
+		 JMenuBar menubar = new JMenuBar();
+		 menubar.setPreferredSize(new Dimension(50,50));
+		 menubar.setBackground(Color.decode("#e0861f"));
+		 JMenu menu = new JMenu("Compte root");
+		 menu.setAlignmentX(SwingConstants.WEST);
+		 menu.setFont(new Font("Serif", Font.BOLD, 20));
+		 menu.setForeground(Color.decode("#fafafa"));
+		 menu.setSize(80,80);
+		 menubar.add(menu);
+		return menubar;
+	 }
+	
+	private JPanel panelContainer()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		panel.add(labelAndInput());
+		return panel;
+	}
+	
+	private JPanel labelAndInput()
+	{
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#f2ef13"));
+		GridLayout layout = new GridLayout(0,2);
+		layout.setVgap(40);
+		layout.setHgap(10);
+		panel.setLayout(layout);
+		panel.add(nom());
+		panel.add(nomInput());
+		panel.add(prenom());
+		panel.add(prenomInput());
+		panel.add(email());
+		panel.add(emailInput());
+		panel.add(pass());
+		panel.add(passInput());
+		if(!connectedEmploye.estRoot()) {
+			panel.add(arrive());
+			panel.add(dateArrive());
+			panel.add(depart());
+			panel.add(dateDepart());
+		}
+		panel.add(save());
+		panel.add(cancel());
+		return panel;
+	}
+	
+    private JLabel nom()
+    {
+    	JLabel label = new JLabel("Nom :");
+    	label.setFont(new Font("Serif", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#e0861f"));
+    	return label;
+    }
+    
+    private JLabel prenom()
+    {
+    	JLabel label = new JLabel("Prénom :");
+    	label.setFont(new Font("Serif", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#e0861f"));
+    	return label;
+    }
+    
+    private JLabel email()
+    {
+    	JLabel label = new JLabel("Email :");
+    	label.setFont(new Font("Serif", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#e0861f"));
+    	return label;
+    }
+    
+    private JLabel pass()
+    {
+    	JLabel label = new JLabel("Mot de passe :");
+    	label.setFont(new Font("Serif", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#e0861f"));
+    	return label;
+    }
+    
+    
+    private JLabel arrive()
+    {
+    	JLabel label = new JLabel("Date d'arrivée :");
+    	label.setFont(new Font("Serif", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#e0861f"));
+    	return label;
+    }
+    
+    private JLabel depart()
+    {
+    	JLabel label = new JLabel("Date de depart :");
+    	label.setFont(new Font("Serif", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#e0861f"));
+    	return label;
+    }
+    
+    
+    private JTextField nomInput()
+    {
+    	nom = new JTextField();
+    	nom.setText(connectedEmploye.getNom());
+    	return nom;
+    }
+    
+    private JTextField prenomInput()
+    {
+    	prenom = new JTextField();
+    	prenom.setText(connectedEmploye.getPrenom());
+    	return prenom;
+    }
+    
+    private JTextField emailInput()
+    {
+    	email = new JTextField();
+    	email.setText(connectedEmploye.getMail());
+    	return email;
+    }
+    
+    private JTextField passInput()
+    {
+    	pass = new JTextField();
+    	pass.setText(connectedEmploye.getPassword());
+    	return pass;
+    }
+    
+    private JTextField dateArrive()
+    {
+    	arrive = new JTextField();
+    	arrive.setText(String.valueOf(connectedEmploye.getDateArrivee()));
+    	return arrive;
+    }
+    
+    private JTextField dateDepart()
+    {
+    	depart = new JTextField();
+    	depart.setText(String.valueOf(connectedEmploye.getDateDepart()));
+    	return depart;
+    }
+    private JButton save()
+    {
+    	JButton btn = new JButton("Enregistrer");
+    	btn.setBackground(Color.decode("#e0861f"));
+		btn.setForeground(Color.decode("#fafafa"));
+		btn.setFont(new Font("Serif", Font.PLAIN, 20));
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				 connectedEmploye.setNom(nom.getText());
+				 connectedEmploye.setPrenom(prenom.getText());
+				 connectedEmploye.setMail(email.getText());
+				 connectedEmploye.setPassword(pass.getText());
+				 try {
+					gestionPersonnel.updateE(gestionPersonnel.getRoot(), null);
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 frame().setVisible(false);
+				 frame().dispose();
+				 Accueil home  = new Accueil(gestionPersonnel, gestionPersonnel.getRoot());
+				 home.frame().setVisible(true);
+				
+			}
+		});
+    	return btn;
+    }
+    private JButton cancel()
+    {
+    	JButton btn = new JButton("Annuler");
+    	btn.setBackground(Color.decode("#540b0e"));
+		btn.setForeground(Color.decode("#fafafa"));
+		btn.setFont(new Font("Serif", Font.PLAIN, 20));
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame().setVisible(false);
+				Accueil home = new Accueil(gestionPersonnel, connectedEmploye);
+				home.frame().setVisible(true);
+			}
+		});
+    	return btn;
+    }
 }

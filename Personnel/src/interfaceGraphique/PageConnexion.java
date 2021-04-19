@@ -1,101 +1,191 @@
 package interfaceGraphique;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.SortedSet;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-public class PageConnexion {
-	public static void main(String[] args)
-	{
-		JLabel label = new JLabel("Identifiez-vous", JLabel.CENTER); //Créer le texte et le centrer
-		label.setFont(new Font("Rockwell Nova", Font.PLAIN, 35));
-		label.setVerticalAlignment(JLabel.TOP);
+import personnel.Employe;
+import personnel.GestionPersonnel;
+import personnel.Ligue;
+
+public class PageConnexion<listEmployes> {
+	
+	    static GestionPersonnel gestionPersonnel;
+	    private  static Accueil accueil;
+	    GererEmploye listemp;
+	    Ligue ligue;
+	    Employe employe;
+	    private JTextField passwordTxt;
+	    private TextField login;
+	    Employe connectedEmploye;
+	    private JLabel passIncorrect;
+	    
+	    public PageConnexion(GestionPersonnel gestionPersonnel){
+			this.gestionPersonnel = gestionPersonnel;
+			this.listemp =  new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
+		}
 		
-		
+	    public void signIn(){
+	    	frame().setVisible(true);
+	    }
+	
+	    public JFrame frame() {
 		JFrame frame = new JFrame(); //Créer une instance de JFrame  
 		frame.setTitle("Page de connexion");
+		frame.getContentPane().setBackground(Color.decode("#f2ef13"));
 		frame.setSize(800, 500);
-	//	frame.getContentPane().setBackground(Color.YELLOW);
-		frame.add(label); //Ajouter label à frame
+		frame.setLocationRelativeTo(null);
+		frame.setLayout(new GridBagLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JButton button = new JButton("Retour");//créer une instance de JButton  
-		button.setBounds(10,10,100, 40);//x axes, y axes, largeur, hauteur  
-		button.setBackground(Color.BLACK); //Définir la couleur de fond  
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(button);//Ajouter bouton dans JFrame  
-				
-		
-        
-		JButton button2 = new JButton("Se connecter");//créer une instance de JButton  
-		button2.setBounds(300,300, 200, 70);//x axes, y axes, largeur, hauteur  
-		button2.setBackground(Color.BLACK); //Définir la couleur de fond  
-		button2.setForeground(Color.WHITE);
-		button2.setFont(new Font("Rockwell Nova", Font.ITALIC, 15));
-		frame.add(button2);//Ajouter bouton dans JFrame  
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.YELLOW); 
-		JTextField field = new JTextField(" Identifiant : ", 20);
-		field.setBounds(250,100, 300, 50);
-		field.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field);
-		field.setVisible(true);
-		
-		field.addActionListener(new ActionListener()
-        {
-               public void actionPerformed(ActionEvent e)
-               {
-                     String input = field.getText();
-                     label.setText(input); 
-               }
-        });
-		
-		panel.add(label); 
-        frame.add(panel);
-        
-        JPanel panel2 = new JPanel();
-        panel2.setBackground(Color.YELLOW); 
-		JTextField field2 = new JTextField(" Mot de passe : ", 20);
-		field2.setBounds(250,200, 300, 50);
-		field2.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field2);
-		field2.setVisible(true);
+		frame.setJMenuBar(menuBar());
+		frame.add(container());
+		return frame;
+	}
+	
 	    
+	    private JPanel container(){
+	    	JPanel panel = new JPanel();
+	    	panel.setPreferredSize(new Dimension(450,300));
+	    	panel.setBackground(Color.decode("#e0861f"));
+	    	//panel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.decode("#540b0e")));
+	    	panel.setBorder(BorderFactory.createLineBorder(Color.decode("#c9b02e"), 1));
+	        panel.add(loginPasswordInput());
+	        return panel;
+	    }
+	    
+	    private JPanel  loginPasswordInput(){
+	    	JPanel panel = new JPanel();
+	    	panel.setBackground(Color.decode("#e0861f"));
+	    	GridLayout layout = new GridLayout(0,2);
+	    	layout.setVgap(40);
+	    	layout.setHgap(10);
+	        panel.setLayout(layout);
+	        panel.add(login());
+	        panel.add(loginInput());
+	        panel.add(password());
+	        panel.add(passInput());
+	        panel.add(btnConnexion());
+	        panel.add(passwordFailed());
+	        return panel;
+	    }
+	    
+	    private JLabel login(){
+	    	JLabel loginL = new JLabel("Identifiant : ");
+	        loginL.setFont(new Font("Serif", Font.BOLD, 25));
+	        loginL.setForeground(Color.decode("#c9b02e"));
+	        return loginL;
+	    }
+	    
+	    
+	    private TextField loginInput(){
+	    	login = new TextField();
+	        login.setPreferredSize(new Dimension(150,40));
+	        
+	        return login;
+	    }
+	    
+	    private JLabel password(){
+	    	JLabel passwordL = new JLabel("Mot de passe : ");
+	        passwordL.setFont(new Font("Serif", Font.BOLD, 25));
+	        passwordL.setForeground(Color.decode("#c9b02e"));
+	        return passwordL;
+	    }
+	    
+	    private JTextField passInput(){
+	    	passwordTxt = new JTextField();
+	        return passwordTxt;
+	    }
+	    
+	    
+	    private  JButton btnConnexion(){
+	    	 JButton btnconnexion = new JButton("Se connecter");
+	         btnconnexion.setPreferredSize(new Dimension(200,50));
+	         btnconnexion.setBackground(Color.decode("#c9b02e"));
+	         btnconnexion.setForeground(Color.decode("#fafafa"));
+	         btnconnexion.setFont(new Font("Serif", Font.PLAIN, 20));
+	         btnconnexion.addActionListener(new ActionListener()
+	         {
 
-		field2.addActionListener(new ActionListener()
-        {
-               public void actionPerformed(ActionEvent e)
-               {
-                     String input = field2.getText();
-                     label.setText(input); 
-               }
-        });
-		
-		panel2.add(label); 
-        frame.add(panel2);
-		
-		/** Button Reaction **/
-		/* panel.add(button);
-		 
-         button.addActionListener(new ActionListener()
-         {
-                 public void actionPerformed(ActionEvent e)
-                 {
-                        String input = field.getText();
-                        label.setText(input);
-                 }
-         });
-         */
-  
-         frame.setVisible(true);//Rendre le frame visible
+	    		/**
+	    		 *
+	    		 */
+	    		@Override
+	    		public void actionPerformed(ActionEvent arg0) {
+	    			
+	    			if(passwordTxt.getText().equals(gestionPersonnel.getRoot().getPassword())){
+	    				connectedEmploye = gestionPersonnel.getRoot();
+	    				   Accueil accueil = new Accueil(gestionPersonnel, connectedEmploye);
+	    				   accueil.frame().setVisible(true);
+	    				   accueil.getEmploye(gestionPersonnel.getRoot());
+	    			}
+	    			else {
+	    				for(Ligue ligue : gestionPersonnel.getLigues()) {
+	       		    	 for(Employe employe : ligue.getEmployes()) {
+	       		    	    if(passwordTxt.getText().equals(employe.getPassword()) && login.getText().equals(employe.getMail())) { 
+	       		    			connectedEmploye = employe;
+	       		    			Accueil accueil = new Accueil(gestionPersonnel, connectedEmploye);
+	       		    			accueil.getEmploye(connectedEmploye);
+	         				    accueil.frame().setVisible(true);
+	       		    		 }else if(!passwordTxt.getText().equals(employe.getPassword()) || !login.getText().equals(employe.getMail())) {
+	       		    			passIncorrect.setText("Login ou mot de passe incorrect!");
+	       		    		 }
+	       		    	 }
+	       		     }
+	    			}
+	    		}
+	         });
+	         
+	         return btnconnexion;
+	    }
+	    
+	    private JLabel passwordFailed(){
+	    	passIncorrect = new JLabel();
+	    	return passIncorrect;
+	    }
+	    
+	    private JMenuBar menuBar(){
+			 JMenuBar menubar = new JMenuBar();
+			 menubar.setPreferredSize(new Dimension(50,50));
+			 menubar.setBackground(Color.decode("#c9b02e"));
+			 JMenu menu = new JMenu("Connexion");
+			 menu.setAlignmentX(SwingConstants.WEST);
+			 menu.setFont(new Font("Serif", Font.BOLD, 20));
+			 menu.setForeground(Color.decode("#fafafa"));
+			 menu.setSize(80,80);
+			 menubar.add(menu);
+			return menubar;
+		 }
+	    
+	    public void Accueil(){
+	    	 JFrame pageAccueil = new JFrame();
+	    	 pageAccueil.setVisible(true);
+	    	 pageAccueil.setTitle("Home page");
+	    	 pageAccueil.getContentPane().setLayout(new FlowLayout());
+	    	 pageAccueil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    	 pageAccueil.pack();
+	    }
+	    
+	public static void main(String[] args){
+		PageConnexion PageConnexion = new PageConnexion(GestionPersonnel.getGestionPersonnel());
+    	interfaceGraphique.PageConnexion.gestionPersonnel.getRoot();
+    	PageConnexion.signIn();      	 
 	}
 }
