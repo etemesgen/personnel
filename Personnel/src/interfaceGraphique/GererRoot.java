@@ -53,27 +53,27 @@ public class GererRoot{
 		account.setLayout(new GridBagLayout());
 		account.setSize(700,700);
 		account.setLocationRelativeTo(null);
-		account.setJMenuBar(menuBar());
-		account.add(panelCobtainer());
+//		account.setJMenuBar(menuBar());
+		account.add(panelContainer());
 		account.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		return account;
 	}
 	
-	private JMenuBar menuBar()
+	/*private JMenuBar menuBar()
 	 {
 		 JMenuBar menubar = new JMenuBar();
 		 menubar.setPreferredSize(new Dimension(50,50));
-		 menubar.setBackground(Color.decode("#e0861f"));
-		 JMenu menu = new JMenu("Compte root");
+		 menubar.setBackground(Color.decode("#f2ef13"));
+		 JMenu menu = new JMenu("Gérer le COMPTE ROOT");
 		 menu.setAlignmentX(SwingConstants.WEST);
-		 menu.setFont(new Font("Serif", Font.BOLD, 20));
-		 menu.setForeground(Color.decode("#fafafa"));
+		 menu.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		 menu.setForeground(Color.decode("#FF0000"));
 		 menu.setSize(80,80);
 		 menubar.add(menu);
 		return menubar;
-	 }
+	 }*/
 
-	private JPanel panelCobtainer()
+	private JPanel panelContainer()
 	{
 		JPanel panelContainer = new JPanel();
 		panelContainer.setBackground(Color.decode("#f2ef13"));
@@ -83,14 +83,14 @@ public class GererRoot{
 		panelContainer.setLayout(layout);
 		JLabel titleAccount = new JLabel();
 		if(connectedEmploye.estRoot()) {
-			titleAccount.setText("Compte root");
+			titleAccount.setText("Gérer le compte root");
 		}
 		else {
-			titleAccount.setText("Mon compte");
+			titleAccount.setText("MON COMPTE");
 		}
 		titleAccount.setHorizontalAlignment(SwingConstants.CENTER);
-		titleAccount.setFont(new Font("Serif", Font.BOLD, 25));
-		titleAccount.setForeground(Color.decode("#e0861f"));
+		titleAccount.setFont(new Font("Rockwell Nova", Font.BOLD, 25));
+		titleAccount.setForeground(Color.decode("#FF0000"));
 		panelContainer.add(titleAccount);
 		panelContainer.add(panelLabels());
 		panelContainer.add(btns());
@@ -101,8 +101,8 @@ public class GererRoot{
 	private JPanel panelLabels()
 	{
 		JPanel panelLabels = new JPanel();
-		panelLabels.setBorder(BorderFactory.createLineBorder(Color.decode("#e0861f"), 1));
-		panelLabels.setBackground(Color.decode("#feeafa"));
+		panelLabels.setBorder(BorderFactory.createLineBorder(Color.decode("#222222"), 1));
+		panelLabels.setBackground(Color.decode("#f2ef13"));
 		panelLabels.setLayout(new GridLayout(0,2));
 		panelLabels.setPreferredSize(new Dimension(700,550));
 		ArrayList<JLabel> labels = new ArrayList<>();
@@ -123,8 +123,8 @@ public class GererRoot{
 		for(JLabel jlabel : labels) 
 		{
 			panelLabels.add(jlabel);
-			jlabel.setForeground(Color.decode("#e0861f"));
-			jlabel.setFont(new Font("Serif", Font.PLAIN, 20));
+			jlabel.setForeground(Color.decode("#222222"));
+			jlabel.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
 		}
 		return panelLabels;
 	}
@@ -147,9 +147,9 @@ public class GererRoot{
 		 }else {
 			 editEmpBtn.setText("Changer mon compte");
 		 }
-		 editEmpBtn.setFont(new Font("Serif", Font.PLAIN, 25));
-		 editEmpBtn.setBackground(Color.decode("#e0861f"));
-		 editEmpBtn.setForeground(Color.decode("#fafafa"));
+		 editEmpBtn.setFont(new Font("Rockwell Nova", Font.PLAIN, 25));
+		 editEmpBtn.setBackground(Color.decode("#222222"));
+		 editEmpBtn.setForeground(Color.decode("#ffffff"));
 		 editEmpBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -169,9 +169,9 @@ public class GererRoot{
 	private JButton back()
 	{
 		JButton back = new JButton("Retour");
-		back.setFont(new Font("Serif", Font.PLAIN, 25));
-		back.setBackground(Color.decode("#540b0e"));
-		back.setForeground(Color.decode("#fafafa"));
+		back.setFont(new Font("Rockwell Nova", Font.PLAIN, 25));
+		back.setBackground(Color.decode("#222222"));
+		back.setForeground(Color.decode("#ffffff"));
 		back.addActionListener(new ActionListener() {
 			
 			@Override

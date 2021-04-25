@@ -101,21 +101,21 @@ public class Accueil {
 	 }
     
     private JLabel title(){
-		 JLabel title = new JLabel("Liste des ligues");
+		 JLabel title = new JLabel("LISTE DES LIGUES");
 		 title.setHorizontalAlignment(SwingConstants.CENTER);
-		 title.setFont(new Font("Serif", Font.BOLD, 25));
+		 title.setFont(new Font("Rockwell Nova", Font.BOLD, 25));
 		 return title;
 	 }
     
     private JButton addLigueBtn(){
 		 JButton addLigueBtn = new JButton("Ajouter une ligue");
-		 addLigueBtn.setFont(new Font("Serif", Font.BOLD, 20));
-		 addLigueBtn.setBackground(Color.decode("#e0861f"));
+		 addLigueBtn.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		 addLigueBtn.setBackground(Color.decode("#222222"));
 		 addLigueBtn.setForeground(Color.decode("#fafafa"));
 		 addLigueBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String inputValue = JOptionPane.showInputDialog("Nom de la ligue"); 
+				String inputValue = JOptionPane.showInputDialog("Entrez le nom de la ligue"); 
 				try {
 					gestionPersonnel.addLigue(inputValue);
 				} catch (SauvegardeImpossible e1) {
@@ -136,20 +136,20 @@ public class Accueil {
 	private JMenuBar menuBar(){
 		 JMenuBar menubar = new JMenuBar();
 		 menubar.setPreferredSize(new Dimension(60,60));
-		 JMenu menu = new JMenu("Compte root");
+		 JMenu menu = new JMenu("COMPTE ROOT");
 		 menu.add(menuItem());
-		 menu.setFont(new Font("Serif", Font.BOLD, 20));
-		 menu.setForeground(Color.decode("#fafafa"));
-		 menubar.setBackground(Color.decode("#f0f02e"));
+		 menu.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		 menu.setForeground(Color.decode("#FF0000"));
+		 menubar.setBackground(Color.decode("#f2ef13"));
 		 menubar.add(menu);
 		return menubar;
 	 }
 	
 	 private JMenuItem menuItem(){
 		 JMenuItem itemMenu = new JMenuItem("Gérer le compte root");
-		 itemMenu.setFont(new Font("Serif", Font.PLAIN, 20));
-		 itemMenu.setBackground(Color.decode("#e0861f"));
-		 itemMenu.setForeground(Color.decode("#fafafa"));
+		 itemMenu.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+		 itemMenu.setBackground(Color.decode("#222222"));
+		 itemMenu.setForeground(Color.decode("#ffffff"));
 		 itemMenu.addActionListener(new ActionListener() {
 			
 			@Override
@@ -172,7 +172,7 @@ public class Accueil {
 		 JList<Ligue> listLigues = new JList<>();
 		 listLigues.setOpaque(true);
 		 DefaultListModel<Ligue> listLigue = new DefaultListModel<>();
-		 listLigues.setFont(new Font("Serif", Font.BOLD, 22));
+		 listLigues.setFont(new Font("Rockwell Nova", Font.BOLD, 22));
 		 listLigues.setModel(listLigue);
 		 for (Ligue ligue : choix) {
 			   listLigue.addElement(ligue);
@@ -191,8 +191,8 @@ public class Accueil {
 			}
 		});
 		 listLigues.setModel(listLigue);
-		 listLigues.setBackground(Color.decode("#feeafa"));
-		 listLigues.setForeground(Color.decode("#540b0e"));
+		 listLigues.setBackground(Color.decode("#f2ef13"));
+		 listLigues.setForeground(Color.decode("#222222"));
 		 DefaultListCellRenderer renderer =  (DefaultListCellRenderer)listLigues.getCellRenderer();  
 		 renderer.setHorizontalAlignment(JLabel.CENTER);
 		 listLigues.setFixedCellHeight(50);
@@ -203,8 +203,8 @@ public class Accueil {
 	 {
 	    JScrollPane scrollpane = new JScrollPane(listLigues());
 	    scrollpane.setPreferredSize(new Dimension(450,300));
-	    scrollpane.getViewport().setBackground(Color.decode("#feeafa"));
-	    scrollpane.setBorder(BorderFactory.createLineBorder(Color.decode("#c9b02e"), 1));
+	    scrollpane.getViewport().setBackground(Color.decode("#f2ef13"));
+	    scrollpane.setBorder(BorderFactory.createLineBorder(Color.decode("#f2ef13"), 1));
 	    return scrollpane;
 	 }
 	 

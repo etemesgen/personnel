@@ -40,7 +40,7 @@ private JTextField depart;
 	{
 		JFrame root = new JFrame();
 		root.getContentPane().setBackground(Color.decode("#f2ef13"));
-		root.setTitle("Editer le root");
+		root.setTitle("Modifier le root");
 		root.setSize(700,700);
 		root.setLocationRelativeTo(null);
 		root.setLayout(new GridBagLayout());
@@ -53,11 +53,11 @@ private JTextField depart;
 	 {
 		 JMenuBar menubar = new JMenuBar();
 		 menubar.setPreferredSize(new Dimension(50,50));
-		 menubar.setBackground(Color.decode("#e0861f"));
-		 JMenu menu = new JMenu("Compte root");
-		 menu.setAlignmentX(SwingConstants.WEST);
-		 menu.setFont(new Font("Serif", Font.BOLD, 20));
-		 menu.setForeground(Color.decode("#fafafa"));
+		 menubar.setBackground(Color.decode("#f2ef13"));
+		 JMenu menu = new JMenu("Modifier le compte root");
+		 menu.setAlignmentX(SwingConstants.CENTER);
+		 menu.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		 menu.setForeground(Color.decode("#FF0000"));
 		 menu.setSize(80,80);
 		 menubar.add(menu);
 		return menubar;
@@ -101,32 +101,32 @@ private JTextField depart;
     private JLabel nom()
     {
     	JLabel label = new JLabel("Nom :");
-    	label.setFont(new Font("Serif", Font.PLAIN, 20));
-    	label.setForeground(Color.decode("#e0861f"));
+    	label.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#222222"));
     	return label;
     }
     
     private JLabel prenom()
     {
     	JLabel label = new JLabel("Prénom :");
-    	label.setFont(new Font("Serif", Font.PLAIN, 20));
-    	label.setForeground(Color.decode("#e0861f"));
+    	label.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#222222"));
     	return label;
     }
     
     private JLabel email()
     {
     	JLabel label = new JLabel("Email :");
-    	label.setFont(new Font("Serif", Font.PLAIN, 20));
-    	label.setForeground(Color.decode("#e0861f"));
+    	label.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#222222"));
     	return label;
     }
     
     private JLabel pass()
     {
     	JLabel label = new JLabel("Mot de passe :");
-    	label.setFont(new Font("Serif", Font.PLAIN, 20));
-    	label.setForeground(Color.decode("#e0861f"));
+    	label.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#222222"));
     	return label;
     }
     
@@ -134,16 +134,16 @@ private JTextField depart;
     private JLabel arrive()
     {
     	JLabel label = new JLabel("Date d'arrivée :");
-    	label.setFont(new Font("Serif", Font.PLAIN, 20));
-    	label.setForeground(Color.decode("#e0861f"));
+    	label.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#222222"));
     	return label;
     }
     
     private JLabel depart()
     {
     	JLabel label = new JLabel("Date de depart :");
-    	label.setFont(new Font("Serif", Font.PLAIN, 20));
-    	label.setForeground(Color.decode("#e0861f"));
+    	label.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+    	label.setForeground(Color.decode("#222222"));
     	return label;
     }
     
@@ -192,9 +192,9 @@ private JTextField depart;
     private JButton save()
     {
     	JButton btn = new JButton("Enregistrer");
-    	btn.setBackground(Color.decode("#e0861f"));
-		btn.setForeground(Color.decode("#fafafa"));
-		btn.setFont(new Font("Serif", Font.PLAIN, 20));
+    	btn.setBackground(Color.decode("#222222"));
+		btn.setForeground(Color.decode("#ffffff"));
+		btn.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
 		btn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -221,9 +221,9 @@ private JTextField depart;
     private JButton cancel()
     {
     	JButton btn = new JButton("Annuler");
-    	btn.setBackground(Color.decode("#540b0e"));
-		btn.setForeground(Color.decode("#fafafa"));
-		btn.setFont(new Font("Serif", Font.PLAIN, 20));
+    	btn.setBackground(Color.decode("#222222"));
+		btn.setForeground(Color.decode("#ffffff"));
+		btn.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
 		btn.addActionListener(new ActionListener() {
 			
 			@Override

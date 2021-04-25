@@ -64,16 +64,16 @@ public class PageConnexion<listEmployes> {
 	    private JPanel container(){
 	    	JPanel panel = new JPanel();
 	    	panel.setPreferredSize(new Dimension(450,300));
-	    	panel.setBackground(Color.decode("#e0861f"));
-	    	//panel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.decode("#540b0e")));
-	    	panel.setBorder(BorderFactory.createLineBorder(Color.decode("#c9b02e"), 1));
+	    	panel.setBackground(Color.decode("#f2ef13"));
+	 //   	panel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.decode("#c9b02e")));
+	 //   	panel.setBorder(BorderFactory.createLineBorder(Color.decode("#c9b02e"), 1));
 	        panel.add(loginPasswordInput());
 	        return panel;
 	    }
 	    
 	    private JPanel  loginPasswordInput(){
 	    	JPanel panel = new JPanel();
-	    	panel.setBackground(Color.decode("#e0861f"));
+	    	panel.setBackground(Color.decode("#f2ef13"));
 	    	GridLayout layout = new GridLayout(0,2);
 	    	layout.setVgap(40);
 	    	layout.setHgap(10);
@@ -89,8 +89,8 @@ public class PageConnexion<listEmployes> {
 	    
 	    private JLabel login(){
 	    	JLabel loginL = new JLabel("Identifiant : ");
-	        loginL.setFont(new Font("Serif", Font.BOLD, 25));
-	        loginL.setForeground(Color.decode("#c9b02e"));
+	        loginL.setFont(new Font("Rockwell Nova", Font.BOLD, 25));
+	        loginL.setForeground(Color.decode("#222222"));
 	        return loginL;
 	    }
 	    
@@ -104,8 +104,8 @@ public class PageConnexion<listEmployes> {
 	    
 	    private JLabel password(){
 	    	JLabel passwordL = new JLabel("Mot de passe : ");
-	        passwordL.setFont(new Font("Serif", Font.BOLD, 25));
-	        passwordL.setForeground(Color.decode("#c9b02e"));
+	        passwordL.setFont(new Font("Rockwell Nova", Font.BOLD, 25));
+	        passwordL.setForeground(Color.decode("#222222"));
 	        return passwordL;
 	    }
 	    
@@ -118,9 +118,10 @@ public class PageConnexion<listEmployes> {
 	    private  JButton btnConnexion(){
 	    	 JButton btnconnexion = new JButton("Se connecter");
 	         btnconnexion.setPreferredSize(new Dimension(200,50));
-	         btnconnexion.setBackground(Color.decode("#c9b02e"));
+	         btnconnexion.setBounds(600,380,100, 40);
+	         btnconnexion.setBackground(Color.decode("#222222"));
 	         btnconnexion.setForeground(Color.decode("#fafafa"));
-	         btnconnexion.setFont(new Font("Serif", Font.PLAIN, 20));
+	         btnconnexion.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
 	         btnconnexion.addActionListener(new ActionListener()
 	         {
 
@@ -164,11 +165,11 @@ public class PageConnexion<listEmployes> {
 	    private JMenuBar menuBar(){
 			 JMenuBar menubar = new JMenuBar();
 			 menubar.setPreferredSize(new Dimension(50,50));
-			 menubar.setBackground(Color.decode("#c9b02e"));
-			 JMenu menu = new JMenu("Connexion");
-			 menu.setAlignmentX(SwingConstants.WEST);
-			 menu.setFont(new Font("Serif", Font.BOLD, 20));
-			 menu.setForeground(Color.decode("#fafafa"));
+			 menubar.setBackground(Color.decode("#f2ef13"));
+			 JMenu menu = new JMenu("CONNEXION");
+			 menu.setHorizontalAlignment(JMenu.CENTER);
+			 menu.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+			 menu.setForeground(Color.decode("#FF0000"));
 			 menu.setSize(80,80);
 			 menubar.add(menu);
 			return menubar;

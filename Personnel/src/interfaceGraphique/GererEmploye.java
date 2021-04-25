@@ -61,7 +61,7 @@ public class GererEmploye {
 	public JFrame frame()
 	{
 		JFrame employes = new JFrame();
-		employes.getContentPane().setBackground(Color.decode("#cbc0d3"));
+		employes.getContentPane().setBackground(Color.decode("#f2ef13"));
 		employes.setSize(700,700);
 		employes.setLocationRelativeTo(null);
 		employes.setJMenuBar(menuBar());
@@ -73,7 +73,7 @@ public class GererEmploye {
 	private JPanel container()
 	{
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#cbc0d3"));
+		panel.setBackground(Color.decode("#ffffff"));
 		panel.setMinimumSize(new Dimension(500,500));
 		BorderLayout layout = new BorderLayout();
 		layout.setVgap(25);
@@ -91,7 +91,7 @@ public class GererEmploye {
 		GridLayout layout = new GridLayout(2,1);
 		layout.setVgap(15);
 		panel.setLayout(layout);
-		panel.setBackground(Color.decode("#cbc0d3"));
+		panel.setBackground(Color.decode("#f2ef13"));
 		Box back = Box.createHorizontalBox();
 		back.add(back());
 		panel.add(back);
@@ -103,7 +103,7 @@ public class GererEmploye {
 	{
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(200,500));
-		panel.setBackground(Color.decode("#feeafa"));
+		panel.setBackground(Color.decode("#ffffff"));
 		if(ligue.getEmployes().size() > 0)
 		{
 			panel.add(list());
@@ -115,9 +115,9 @@ public class GererEmploye {
 	
 	private JLabel notEmployesFunded()
 	{
-		JLabel label = new JLabel("Il y a aucun employé dans cette ligue");
-		label.setFont(new Font("Serif", Font.BOLD, 22));
-		label.setForeground(Color.decode("#cbc0d3"));
+		JLabel label = new JLabel("Il existe aucun employé dans cette ligue");
+		label.setFont(new Font("Rockwell Nova", Font.BOLD, 22));
+		label.setForeground(Color.decode("#222222"));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		return label;
 	}
@@ -127,15 +127,15 @@ public class GererEmploye {
 		 JMenuBar menubar = new JMenuBar();
 		 menubar.setPreferredSize(new Dimension(60,60));
 		 menubar.add(menuLigues());
-		 menubar.setBackground(Color.decode("#540b0e"));
+		 menubar.setBackground(Color.decode("#f2ef13"));
 		return menubar;
 	}
 	
 	private JMenu menuLigues()
 	{
-		JMenu ligues = new JMenu("Mon compte");
-		 ligues.setFont(new Font("Serif", Font.BOLD, 20));
-		 ligues.setForeground(Color.decode("#fafafa"));
+		JMenu ligues = new JMenu("Sélection Ligue");
+		 ligues.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		 ligues.setForeground(Color.decode("#FF0000"));
 		 ligues.addSeparator();
          ligues.add(menuItem());
 		 return ligues;
@@ -144,9 +144,9 @@ public class GererEmploye {
 	 private JMenuItem menuItem()
 	 {
 		 JMenuItem itemMenu = new JMenuItem("Gérer mon compte");
-		 itemMenu.setFont(new Font("Serif", Font.PLAIN, 20));
-		 itemMenu.setBackground(Color.decode("#540b0e"));
-		 itemMenu.setForeground(Color.decode("#fafafa"));
+		 itemMenu.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+		 itemMenu.setBackground(Color.decode("#222222"));
+		 itemMenu.setForeground(Color.decode("#ffffff"));
 		 itemMenu.addActionListener(new ActionListener() {
 			
 			@Override
@@ -183,9 +183,9 @@ public class GererEmploye {
 		        }
 			}
 		});
-		 empL.setFont(new Font("Serif", Font.BOLD, 22));
-		 empL.setBackground(Color.decode("#feeafa"));
-		 empL.setForeground(Color.decode("#540b0e"));
+		 empL.setFont(new Font("Rockwell Nova", Font.BOLD, 22));
+		 empL.setBackground(Color.decode("#ffffff"));
+		 empL.setForeground(Color.decode("#222222"));
 		 DefaultListCellRenderer renderer =  (DefaultListCellRenderer)empL.getCellRenderer();  
 		 renderer.setHorizontalAlignment(JLabel.CENTER);
 		 empL.setFixedCellWidth(500);
@@ -198,8 +198,8 @@ public class GererEmploye {
 		JLabel title = new JLabel();
 		title.setText(ligue.getNom() + " administrée par  " + ligue.getAdministrateur().getNom());
 		title.setHorizontalAlignment(SwingConstants.CENTER);
-		title.setFont(new Font("Serif", Font.BOLD, 27));
-		title.setForeground(Color.decode("#540b0e"));
+		title.setFont(new Font("Rockwell Nova", Font.BOLD, 27));
+		title.setForeground(Color.decode("#222222"));
 		return  title;
 	}
 	
@@ -207,7 +207,7 @@ public class GererEmploye {
 	{
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(650,150));
-		panel.setBackground(Color.decode("#cbc0d3"));
+		panel.setBackground(Color.decode("#f2ef13"));
 		FlowLayout layout = new FlowLayout();
 		panel.setLayout(layout);
 		
@@ -234,10 +234,10 @@ public class GererEmploye {
 	    if(!gestionPersonnel.haveWritePermission(ligue, connectedEmploye)) {
 	    	renameLigue.setEnabled(false);
 	 }
-	    renameLigue.setFont(new Font("Serif", Font.BOLD, 18));
-	    renameLigue.setForeground(Color.decode("#fafafa"));
-	    renameLigue.setBackground(Color.decode("#540b0e"));
-	    renameLigue.setPreferredSize(new Dimension(200,35));
+	    renameLigue.setFont(new Font("Rockwell Nova", Font.BOLD, 18));
+	    renameLigue.setForeground(Color.decode("#ffffff"));
+	    renameLigue.setBackground(Color.decode("#222222"));
+	    renameLigue.setPreferredSize(new Dimension(250,35));
 	    renameLigue.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -259,10 +259,10 @@ public class GererEmploye {
 		 if(!gestionPersonnel.haveWritePermission(ligue, connectedEmploye)) {
 			      deleteLigue.setEnabled(false);
 		 }
-		deleteLigue.setFont(new Font("Serif", Font.BOLD, 18));
-		deleteLigue.setForeground(Color.decode("#fafafa"));
-		deleteLigue.setBackground(Color.decode("#540b0e"));
-		deleteLigue.setPreferredSize(new Dimension(200,35));
+		deleteLigue.setFont(new Font("Rockwell Nova", Font.BOLD, 18));
+		deleteLigue.setForeground(Color.decode("#ffffff"));
+		deleteLigue.setBackground(Color.decode("#222222"));
+		deleteLigue.setPreferredSize(new Dimension(250,35));
 		deleteLigue.addActionListener(new ActionListener() {
 			
 			@Override
@@ -281,10 +281,10 @@ public class GererEmploye {
 	private JButton back()
 	{
 		JButton btn = new JButton("Retour");
-		btn.setBackground(Color.decode("#48cae4"));
-		btn.setForeground(Color.decode("#fafafa"));
+		btn.setBackground(Color.decode("#222222"));
+		btn.setForeground(Color.decode("#ffffff"));
 		btn.setPreferredSize(new Dimension(130,30));
-		btn.setFont(new Font("Serif", Font.PLAIN, 22));
+		btn.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
 		btn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -303,9 +303,9 @@ public class GererEmploye {
 		if(!gestionPersonnel.haveWritePermission(ligue, connectedEmploye)) {
 			addEmploye.setEnabled(false);
 	 }
-		addEmploye.setFont(new Font("Serif", Font.BOLD, 20));
-		addEmploye.setBackground(Color.decode("#540b0e"));
-		addEmploye.setForeground(Color.decode("#fafafa"));
+		addEmploye.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		addEmploye.setBackground(Color.decode("#222222"));
+		addEmploye.setForeground(Color.decode("#ffffff"));
 		addEmploye.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

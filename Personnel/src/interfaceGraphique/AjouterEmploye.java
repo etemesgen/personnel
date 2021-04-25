@@ -32,7 +32,7 @@ public class AjouterEmploye{
 	private JTextField prenom;
 	private JTextField mail;
 	private JTextField pass;
-	private JTextField dateArrive;
+	private JTextField dateArrivee;
 	private JTextField dateDepart;
 	private Employe connectedEmploye;
 	
@@ -51,49 +51,49 @@ public class AjouterEmploye{
 	private JFrame frame()
 	{
 		JFrame employeAdd = new JFrame();
-		employeAdd.getContentPane().setBackground(Color.decode("#cbc0d3"));
+		employeAdd.getContentPane().setBackground(Color.decode("#f2ef13"));
 		employeAdd.setTitle("Ajouter un employé");
 		employeAdd.setLayout(new GridBagLayout());
 		employeAdd.setSize(700,700);
 		employeAdd.setLocationRelativeTo(null);
-		employeAdd.setJMenuBar(menuBar());
+//		employeAdd.setJMenuBar(menuBar());
 		employeAdd.add(panelContainer());
 		employeAdd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		return employeAdd;
 	}
 	
-	 private JMenuBar menuBar()
+/*	 private JMenuBar menuBar()
 	 {
 		 JMenuBar menubar = new JMenuBar();
 		 menubar.setPreferredSize(new Dimension(60,60));
 		 JMenu menu = new JMenu("Quitter");
-		 menu.setFont(new Font("Serif", Font.BOLD, 20));
+		 menu.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
 		 menu.setSize(70,70);
-		 menu.setForeground(Color.decode("#fafafa"));
+		 menu.setForeground(Color.decode("#FF0000"));
 		 menubar.add(menu);
-		 menubar.setBackground(Color.decode("#6f1d1b"));
+		 menubar.setBackground(Color.decode("#f2ef13"));
 		return menubar;
-	 }
+	 }*/
 
 	
 	private JPanel panel()
 	{
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#cbc0d3"));
+		panel.setBackground(Color.decode("#f2ef13"));
 		panel.setLayout(new GridLayout(0,2, 25,25));
 		panel.setPreferredSize(new Dimension(500,500));
 		JLabel nomL = new JLabel("Nom :");
-		nomL.setFont(new Font("Serif", Font.PLAIN, 22));
+		nomL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
 		JLabel prenomL = new JLabel("Prénom :");
-		prenomL.setFont(new Font("Serif", Font.PLAIN, 22));
+		prenomL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
 		JLabel emailL = new JLabel("Email :");
-		emailL.setFont(new Font("Serif", Font.PLAIN, 22));
+		emailL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
 		JLabel passwordL = new JLabel("Password :");
-		passwordL.setFont(new Font("Serif", Font.PLAIN, 22));
+		passwordL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
 		JLabel dateArriveeL = new JLabel("Date d'arrivée :");
-		dateArriveeL.setFont(new Font("Serif", Font.PLAIN, 22));
+		dateArriveeL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
 		JLabel dateDepartL = new JLabel("Date de départ :");
-		dateDepartL.setFont(new Font("Serif", Font.PLAIN, 22));
+		dateDepartL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
 
 		
 		panel.add(nomL);
@@ -104,10 +104,10 @@ public class AjouterEmploye{
 		panel.add(mailInput());
 		panel.add(passwordL);
 		panel.add(passwordInput());
-		//panel.add(dateArriveeL);
-		//panel.add(DateArriveInput());
-		//panel.add(dateDepartL);
-		//panel.add(DateDepartInput());
+		panel.add(dateArriveeL);
+		panel.add(DateArriveeInput());
+		panel.add(dateDepartL);
+		panel.add(DateDepartInput());
 		panel.add(addEmploye());
 		panel.add(cancelAdd());
 		return panel;
@@ -138,10 +138,10 @@ public class AjouterEmploye{
 		return pass;
 	}
 	
-	private  JTextField DateArriveInput()
+	private JTextField DateArriveeInput()
 	{
-		dateArrive = new JTextField();
-		return dateArrive;
+		dateArrivee = new JTextField();
+		return dateArrivee;
 	}
 	
 	private JTextField DateDepartInput()
@@ -155,8 +155,9 @@ public class AjouterEmploye{
 	private  JButton addEmploye()
 	{
 		JButton addbtn = new JButton("Ajouter");
-		addbtn.setBackground(Color.decode("#feeafa"));
-		addbtn.setForeground(Color.decode("#540b0e"));
+		addbtn.setBackground(Color.decode("#222222"));
+		addbtn.setForeground(Color.decode("#FFFFFF"));
+		addbtn.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
 		addbtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -174,8 +175,9 @@ public class AjouterEmploye{
 	private JButton cancelAdd()
 	{
 		JButton cancelbtn = new JButton("Annuler");
-		cancelbtn.setBackground(Color.decode("#feeafa"));
-		cancelbtn.setForeground(Color.decode("#540b0e"));
+		cancelbtn.setBackground(Color.decode("#222222"));
+		cancelbtn.setForeground(Color.decode("#FFFFFF"));
+		cancelbtn.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
 		cancelbtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -192,15 +194,15 @@ public class AjouterEmploye{
 	private JPanel panelContainer()
 	{
 		JPanel panelContainer = new JPanel();
-		panelContainer.setBackground(Color.decode("#cbc0d3"));
+		panelContainer.setBackground(Color.decode("#f2ef13"));
 		panelContainer.setLayout(new BorderLayout());
 		panelContainer.setPreferredSize(new Dimension(550,600));
-		JLabel text = new JLabel("Ajouter un employe");
+		JLabel text = new JLabel("Ajouter un employé");
 		text.setHorizontalAlignment(SwingConstants.CENTER);
-		text.setForeground(Color.decode("#540b0e"));
+		text.setForeground(Color.decode("#FF0000"));
 		Border borderTitle = new EmptyBorder(25,25,25,25);
 		text.setBorder(borderTitle);
-		text.setFont(new Font("Serif", Font.BOLD, 30));
+		text.setFont(new Font("Rockwell Nova", Font.BOLD, 30));
 		panelContainer.add(panel(), BorderLayout.CENTER);
 		panelContainer.add(text, BorderLayout.NORTH);
 		return panelContainer;

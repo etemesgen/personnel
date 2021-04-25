@@ -65,28 +65,29 @@ public class SelectionnerEmploye{
 	{
 		JFrame employeData = new JFrame();
 		employeData.getContentPane().setBackground(Color.decode("#f2ef13"));
+		employeData.setTitle("Sélectionner un employé");
 		employeData.setLayout(new GridBagLayout());
 		employeData.add(container());
 		employeData.setSize(700,700);
 		employeData.setLocationRelativeTo(null);
-		employeData.setJMenuBar(menuBar());
+//		employeData.setJMenuBar(menuBar());
 		employeData.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		return employeData;
 	}
 	
-	private JMenuBar menuBar()
+/*	private JMenuBar menuBar()
 	{
 		 JMenuBar menubar = new JMenuBar();
 		 menubar.setPreferredSize(new Dimension(60,60));
 		 menubar.add(menuLigues());
-		 menubar.setBackground(Color.decode("#e0861f"));
+		 menubar.setBackground(Color.decode("#f2ef13"));
 		return menubar;
 	}
 	private JMenu menuLigues()
 	{
-		JMenu ligues = new JMenu("Mon compte");
-		 ligues.setFont(new Font("Serif", Font.BOLD, 20));
-		 ligues.setForeground(Color.decode("#fafafa"));
+		JMenu ligues = new JMenu("MON COMPTE");
+		 ligues.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		 ligues.setForeground(Color.decode("#ffffff"));
 		 ligues.add(menuItem());
 		 ligues.addSeparator();
 		 return ligues;
@@ -95,9 +96,9 @@ public class SelectionnerEmploye{
 	 private JMenuItem menuItem()
 	 {
 		 JMenuItem itemMenu = new JMenuItem("Gérer mon compte");
-		 itemMenu.setFont(new Font("Serif", Font.PLAIN, 20));
-		 itemMenu.setBackground(Color.decode("#e0861f"));
-		 itemMenu.setForeground(Color.decode("#fafafa"));
+		 itemMenu.setFont(new Font("Rockwell Nova", Font.PLAIN, 20));
+		 itemMenu.setBackground(Color.decode("#222222"));
+		 itemMenu.setForeground(Color.decode("#FFFFFF"));
 		 itemMenu.addActionListener(new ActionListener() {
 			
 			@Override
@@ -108,12 +109,12 @@ public class SelectionnerEmploye{
 			}
 		});
 		 return itemMenu;
-	 }
+	 }*/
 	private JPanel data()
 	{
 		JPanel panelLabels = new JPanel();
-		panelLabels.setBorder(BorderFactory.createLineBorder(Color.decode("#e0861f"), 1));
-		panelLabels.setBackground(Color.decode("#feeafa"));
+		panelLabels.setBorder(BorderFactory.createLineBorder(Color.decode("#222222"), 1));
+		panelLabels.setBackground(Color.decode("#f2ef13"));
 		GridLayout layout = new GridLayout(0,2);
 		layout.setVgap(9);
 		panelLabels.setLayout(layout);
@@ -133,8 +134,8 @@ public class SelectionnerEmploye{
 		for(JLabel jlabel : labels) 
 		{
 			panelLabels.add(jlabel);
-			jlabel.setFont(new Font("Serif", Font.PLAIN, 21));
-			jlabel.setForeground(Color.decode("#e0861f"));
+			jlabel.setFont(new Font("Rockwell Nova", Font.PLAIN, 21));
+			jlabel.setForeground(Color.decode("#222222"));
 		}
 		return panelLabels;
 	}
@@ -163,11 +164,11 @@ public class SelectionnerEmploye{
 	}
 	
 	private  JLabel title()
-	{
-		JLabel title = new JLabel("Informations");
+	{	
+		JLabel title = new JLabel("Sélection employé", JLabel.CENTER);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
-		title.setFont(new Font("Serif", Font.BOLD, 27));
-		title.setForeground(Color.decode("#fafafa"));
+		title.setFont(new Font("Rockwell Nova", Font.BOLD, 27));
+		title.setForeground(Color.decode("#FF0000"));
 		return title;
 	}
 	
@@ -186,10 +187,10 @@ public class SelectionnerEmploye{
 	private JButton back()
 	{
 		JButton back = new JButton("Retour");
-		back.setPreferredSize(new Dimension(125,30));
-		back.setBackground(Color.decode("#e0861f"));
-		back.setFont(new Font("Serif", Font.BOLD, 19));
-		back.setForeground(Color.decode("#fafafa"));
+	//	back.setPreferredSize(new Dimension(125,30));
+		back.setBackground(Color.decode("#222222"));
+		back.setFont(new Font("Rockwell Nova", Font.BOLD, 19));
+		back.setForeground(Color.decode("#ffffff"));
 		back.addActionListener(new ActionListener() {
 			
 			@Override
@@ -208,10 +209,10 @@ public class SelectionnerEmploye{
 		  if(!gestionPersonnel.haveWritePermission(ligue, connectedEmploye)) {
 			  edit.setEnabled(false);
 		 }
-		edit.setPreferredSize(new Dimension(130, 30));
-		edit.setFont(new Font("Serif", Font.BOLD, 19));
-		edit.setBackground(Color.decode("#e0861f"));
-		edit.setForeground(Color.decode("#fafafa"));
+	//	edit.setPreferredSize(new Dimension(130, 30));
+		edit.setFont(new Font("Rockwell Nova", Font.BOLD, 19));
+		edit.setBackground(Color.decode("#222222"));
+		edit.setForeground(Color.decode("#ffffff"));
 		edit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -230,15 +231,15 @@ public class SelectionnerEmploye{
 		if(!gestionPersonnel.haveWritePermission(ligue, connectedEmploye)) {
 			delete.setEnabled(false);
 		 }
-		delete.setBackground(Color.decode("#e0861f"));
-		delete.setForeground(Color.decode("#fafafa"));
-		delete.setFont(new Font("Serif", Font.BOLD, 19));
+		delete.setBackground(Color.decode("#222222"));
+		delete.setForeground(Color.decode("#FFFFFF"));
+		delete.setFont(new Font("Rockwell Nova", Font.BOLD, 19));
 		delete.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 					selectedEmploye.remove();
-					JOptionPane.showMessageDialog(null, "L'employé a été supprimé", "supprimer l'employé", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "L'employé a été supprimé", "Suppression de l'employé", JOptionPane.INFORMATION_MESSAGE);
 					frame().setVisible(false);
 					frame().dispose();
 					GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
@@ -261,9 +262,9 @@ public class SelectionnerEmploye{
 		if(!gestionPersonnel.haveWritePermission(ligue, connectedEmploye)) {
 			btn.setEnabled(false);
 		 }
-		btn.setBackground(Color.decode("#e0861f"));
-		btn.setForeground(Color.decode("#fafafa"));
-		btn.setFont(new Font("Serif", Font.BOLD, 19));
+		btn.setBackground(Color.decode("#222222"));
+		btn.setForeground(Color.decode("#FFFFFF"));
+		btn.setFont(new Font("Rockwell Nova", Font.BOLD, 19));
 		btn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -271,7 +272,7 @@ public class SelectionnerEmploye{
 				if(!selectedEmploye.estAdmin(ligue)) {
 					ligue.setAdministrateur(selectedEmploye);
 					ligue.setAdmin(selectedEmploye);
-					JOptionPane.showMessageDialog(null, "L'émployé est maintenant l'admin de la ligue" + ligue.getNom() + ".", "Nommer admin", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "L'émployé est maintenant l'admin de la ligue" + ligue.getNom() + ".", "Nommer en tant qu'admin", JOptionPane.INFORMATION_MESSAGE);
 					frame().setVisible(false);
 					frame().dispose();
 					GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
