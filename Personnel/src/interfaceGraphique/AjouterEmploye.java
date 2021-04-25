@@ -1,164 +1,210 @@
 package interfaceGraphique;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import personnel.Employe;
+import personnel.GestionPersonnel;
+import personnel.Ligue;
 
-public class AjouterEmploye {
-	public static void main(String[] args)
+
+
+public class AjouterEmploye{
+	
+	private static Ligue ligue;
+	private static GestionPersonnel gestionPersonnel;
+	private JTextField nom;
+	private JTextField prenom;
+	private JTextField mail;
+	private JTextField pass;
+	private JTextField dateArrivee;
+	private JTextField dateDepart;
+	private Employe connectedEmploye;
+	
+	
+	public AjouterEmploye(GestionPersonnel gestionPersonnel, Ligue ligue, Employe connectedEmploye) {
+		    AjouterEmploye.ligue = ligue;
+		    AjouterEmploye.gestionPersonnel = gestionPersonnel;
+		    this.connectedEmploye = connectedEmploye;
+	}
+	
+	public void AddEmploye() {
+		
+		frame().setVisible(true);
+	}
+	
+	private JFrame frame()
 	{
-		JLabel label = new JLabel("Ajouter un employé", JLabel.CENTER); 
-		label.setFont(new Font("Rockwell Nova", Font.BOLD, 40));
-		label.setVerticalAlignment(JLabel.TOP); 
-		label.setForeground(Color.RED);
-		
-		
-		JFrame frame = new JFrame(); //Créer une instance de JFrame  
-		frame.setTitle("Nouvel employé");
-		frame.setSize(800, 500);
-		frame.getContentPane().setBackground(Color.YELLOW);
-		frame.add(label); //Ajouter label à frame
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		JButton button = new JButton("Retour");//créer une instance de JButton  
-		button.setBounds(235, 390, 320, 50);//x axes, y axes, largeur, hauteur  
-		button.setBackground(Color.BLACK); //Définir la couleur de fond  
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Rockwell Nova", Font.ITALIC, 15));
-		frame.add(button);//Ajouter bouton dans JFrame  
-		
+		JFrame employeAdd = new JFrame();
+		employeAdd.getContentPane().setBackground(Color.decode("#f2ef13"));
+		employeAdd.setTitle("Ajouter un employé");
+		employeAdd.setLayout(new GridBagLayout());
+		employeAdd.setSize(700,700);
+		employeAdd.setLocationRelativeTo(null);
+//		employeAdd.setJMenuBar(menuBar());
+		employeAdd.add(panelContainer());
+		employeAdd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		return employeAdd;
+	}
+	
+/*	 private JMenuBar menuBar()
+	 {
+		 JMenuBar menubar = new JMenuBar();
+		 menubar.setPreferredSize(new Dimension(60,60));
+		 JMenu menu = new JMenu("Quitter");
+		 menu.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		 menu.setSize(70,70);
+		 menu.setForeground(Color.decode("#FF0000"));
+		 menubar.add(menu);
+		 menubar.setBackground(Color.decode("#f2ef13"));
+		return menubar;
+	 }*/
+
+	
+	private JPanel panel()
+	{
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.YELLOW); 
-		JTextField field = new JTextField(" Nom : ", 20);
-		field.setBounds(240, 60, 300, 40);
-		field.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field);
-		field.setVisible(true);
+		panel.setBackground(Color.decode("#f2ef13"));
+		panel.setLayout(new GridLayout(0,2, 25,25));
+		panel.setPreferredSize(new Dimension(500,500));
+		JLabel nomL = new JLabel("Nom :");
+		nomL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
+		JLabel prenomL = new JLabel("Prénom :");
+		prenomL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
+		JLabel emailL = new JLabel("Email :");
+		emailL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
+		JLabel passwordL = new JLabel("Password :");
+		passwordL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
+		JLabel dateArriveeL = new JLabel("Date d'arrivée :");
+		dateArriveeL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
+		JLabel dateDepartL = new JLabel("Date de départ :");
+		dateDepartL.setFont(new Font("Rockwell Nova", Font.PLAIN, 22));
+
 		
-		field.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel.add(label); 
-	    frame.add(panel);
-	    
-	    JPanel panel2 = new JPanel();
-	    panel2.setBackground(Color.YELLOW); 
-		JTextField field2 = new JTextField(" Prénom : ", 20);
-		field2.setBounds(240, 115, 300, 40);
-		field2.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field2);
-		field2.setVisible(true);
-	    
+		panel.add(nomL);
+		panel.add(nameInput());
+		panel.add(prenomL);
+		panel.add(secondNameInput());
+		panel.add(emailL);
+		panel.add(mailInput());
+		panel.add(passwordL);
+		panel.add(passwordInput());
+		panel.add(dateArriveeL);
+		panel.add(DateArriveeInput());
+		panel.add(dateDepartL);
+		panel.add(DateDepartInput());
+		panel.add(addEmploye());
+		panel.add(cancelAdd());
+		return panel;
+	}
 	
-		field2.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field2.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel2.add(label); 
-	    frame.add(panel2);
-		
-	    JPanel panel3 = new JPanel();
-	    panel3.setBackground(Color.YELLOW); 
-		JTextField field3 = new JTextField(" Mail : ", 100);
-		field3.setBounds(240, 170, 300, 40);
-		field3.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field3);
-		field3.setVisible(true);
-	    
+	private JTextField nameInput()
+	{
+		nom = new JTextField();
+		return nom;
+	}
 	
-		field3.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field3.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel3.add(label); 
-	    frame.add(panel3);
-	    
-	    JPanel panel4 = new JPanel();
-	    panel4.setBackground(Color.YELLOW); 
-		JTextField field4 = new JTextField(" Mot de passe : ", 100);
-		field4.setBounds(240, 225, 300, 40);
-		field4.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field4);
-		field4.setVisible(true);
-	    
+	private JTextField secondNameInput()
+	{
+		prenom = new JTextField();
+		return prenom;
+	}
 	
-		field4.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field4.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel4.add(label); 
-	    frame.add(panel4);
-	    
-	    JPanel panel5 = new JPanel();
-	    panel5.setBackground(Color.YELLOW); 
-		JTextField field5 = new JTextField(" Date d'arrivée : jj/mm/aaaa ", 10);
-		field5.setBounds(240, 280, 300, 40);
-		field5.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field5);
-		field5.setVisible(true);
-	    
 	
-		field5.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field5.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel5.add(label); 
-	    frame.add(panel5);
-	    
-	    JPanel panel6 = new JPanel();
-	    panel6.setBackground(Color.YELLOW); 
-		JTextField field6 = new JTextField(" Date de départ : jj/mm/aaaa ", 10);
-		field6.setBounds(240, 335, 300, 40);
-		field6.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
-		frame.add(field6);
-		field5.setVisible(true);
-	    
+	private  JTextField mailInput()
+	{
+		mail = new JTextField();
+		return mail;
+	}
 	
-		field6.addActionListener(new ActionListener()
-	    {
-	           public void actionPerformed(ActionEvent e)
-	           {
-	                 String input = field6.getText();
-	                 label.setText(input); 
-	           }
-	    });
-		
-		panel6.add(label);
-	    frame.add(panel6);
-	    frame.setVisible(true);
+	private  JTextField passwordInput()
+	{
+		pass = new JTextField();
+		return pass;
+	}
+	
+	private JTextField DateArriveeInput()
+	{
+		dateArrivee = new JTextField();
+		return dateArrivee;
+	}
+	
+	private JTextField DateDepartInput()
+	{
+		dateDepart = new JTextField();
+		return dateDepart;
+	}
+	
+	
+	
+	private  JButton addEmploye()
+	{
+		JButton addbtn = new JButton("Ajouter");
+		addbtn.setBackground(Color.decode("#222222"));
+		addbtn.setForeground(Color.decode("#FFFFFF"));
+		addbtn.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		addbtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ligue.addEmploye(nom.getText(), prenom.getText(), mail.getText(), pass.getText(), null, null);
+	            frame().setVisible(false);
+	            frame().dispose();
+	            GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
+				employesPage.listEmployes();
+			}
+		});
+		return addbtn;
+	}
+	
+	private JButton cancelAdd()
+	{
+		JButton cancelbtn = new JButton("Annuler");
+		cancelbtn.setBackground(Color.decode("#222222"));
+		cancelbtn.setForeground(Color.decode("#FFFFFF"));
+		cancelbtn.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
+		cancelbtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame().setVisible(false);
+				frame().dispose();
+				GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
+				employesPage.listEmployes();
+			}
+		});
+		return cancelbtn;
+	}
+	
+	private JPanel panelContainer()
+	{
+		JPanel panelContainer = new JPanel();
+		panelContainer.setBackground(Color.decode("#f2ef13"));
+		panelContainer.setLayout(new BorderLayout());
+		panelContainer.setPreferredSize(new Dimension(550,600));
+		JLabel text = new JLabel("Ajouter un employé");
+		text.setHorizontalAlignment(SwingConstants.CENTER);
+		text.setForeground(Color.decode("#FF0000"));
+		Border borderTitle = new EmptyBorder(25,25,25,25);
+		text.setBorder(borderTitle);
+		text.setFont(new Font("Rockwell Nova", Font.BOLD, 30));
+		panelContainer.add(panel(), BorderLayout.CENTER);
+		panelContainer.add(text, BorderLayout.NORTH);
+		return panelContainer;
 	}
 }

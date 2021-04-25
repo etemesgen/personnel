@@ -178,7 +178,7 @@ private List<Ligue> selectionnerLigue()
 	
 	private Option supprimer(Ligue ligue)
 	{
-		return new Option("Supprimer", "d", () -> {ligue.remove();});
+		return new Option("Supprimer", "d", () -> {ligue.removeAdmin();});
 	}
 
 	/*Itération 3*/

@@ -44,7 +44,7 @@ class testLigue
 	   @Test
 	   void remove() throws SauvegardeImpossible{
 		      Ligue ligue = gestionPersonnel.addLigue("ligueOne");
-	          ligue.remove();
+	          ligue.removeAdmin();
 	          assertEquals(0, ligue.getEmployes().size());
 	   }   	
 	   
