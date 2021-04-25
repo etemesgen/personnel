@@ -26,11 +26,19 @@ public class PageConnexion {
 		frame.add(label); //Ajouter label à frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JButton button = new JButton("Retour");//créer une instance de JButton  
+		JButton button = new JButton("Azerty");//créer une instance de JButton  
 		button.setBounds(10,10,100, 40);//x axes, y axes, largeur, hauteur  
 		button.setBackground(Color.BLACK); //Définir la couleur de fond  
 		button.setForeground(Color.WHITE);
+		button.addActionListener(new ActionListener()
+        {
+               public void actionPerformed(ActionEvent e)
+               {
+                    System.out.println("Bonjour");
+               }
+        });
 		button.setFont(new Font("Rockwell Nova", Font.PLAIN, 15));
+		System.out.println("Bonjour");
 		frame.add(button);//Ajouter bouton dans JFrame  
 				
 		
@@ -71,14 +79,7 @@ public class PageConnexion {
 		field2.setVisible(true);
 	    
 
-		field2.addActionListener(new ActionListener()
-        {
-               public void actionPerformed(ActionEvent e)
-               {
-                     String input = field2.getText();
-                     label.setText(input); 
-               }
-        });
+	
 		
 		panel2.add(label); 
         frame.add(panel2);
