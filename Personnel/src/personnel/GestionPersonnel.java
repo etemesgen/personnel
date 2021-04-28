@@ -107,7 +107,7 @@ public class GestionPersonnel implements Serializable
 	
 	public Employe addEmploye(int id, String nom)
 	{
-		Employe employe = new Employe(null, id, nom);
+		Employe employe = new Employe(this, id, nom);
 		Employe.add(employe);
 		return employe;
 	} //itération 3
