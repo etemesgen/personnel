@@ -1,5 +1,4 @@
 package interfaceGraphique;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,9 +35,6 @@ import personnel.Employe;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
 import personnel.SauvegardeImpossible;
-
-
-
 
 public class GererEmploye {
 	
