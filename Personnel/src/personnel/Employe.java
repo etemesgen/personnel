@@ -24,9 +24,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	private LocalDate dateDepart, dateArrivee;
 	private int id;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrivee)
+	Employe(GestionPersonnel ligue2, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrivee)
 	{
-		this.gestionPersonnel = gestionPersonnel;
+		this.gestionPersonnel = ligue2;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
@@ -96,9 +96,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param nom le nouveau nom.
 	 */
 	
-	public void setNom(String nom)
+	public void setNom(String nom) throws SauvegardeImpossible
 	{
 		this.nom = nom;
+		gestionPersonnel.update(this);
 	}
 
 	/**
@@ -116,9 +117,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param prénom le nouveau prénom de l'employé. 
 	 */
 
-	public void setPrenom(String prenom)
+	public void setPrenom(String prenom) throws SauvegardeImpossible
 	{
 		this.prenom = prenom;
+		gestionPersonnel.update(this);
 	}
 
 	/**
@@ -136,9 +138,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param mail le nouveau mail de l'employé.
 	 */
 
-	public void setMail(String mail)   
+	public void setMail(String mail) throws SauvegardeImpossible  
 	{
 		this.mail = mail;
+		gestionPersonnel.update(this);
 	}
 	
 	public LocalDate getDateArrivee() {  //Getter pour la date d'arrivée
@@ -180,11 +183,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change le password de l'employé.
 	 * @param password le nouveau password de l'employé. 
+	 * @throws SauvegardeImpossible 
 	 */
 	
-	public void setPassword(String password)
+	public void setPassword(String password) throws SauvegardeImpossible
 	{
 		this.password= password;
+		gestionPersonnel.update(this);
 	}
 
 	/**
@@ -202,7 +207,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * récupère les droits d'administration sur sa ligue.
 	 */
 	
-	public void remove()
+	public void remove() throws SauvegardeImpossible
 	{
 		Employe root = gestionPersonnel.getRoot();
 		if (this != root)
@@ -235,20 +240,11 @@ public class Employe implements Serializable, Comparable<Employe>
 		return res + ")";
 	}
 	
-public int getId() { //itération 3
-	return id;
-}
-
-public void setId(int id) {
-	this.id = id;
-}
-
-public void update(String string) throws SauvegardeImpossible { //itération 3
-	 gestionPersonnel.updateE(this, string);
+	public int getId() { //itération 3
+		return id;
 	}
 
-public static void add(Employe employe) {
-	
-}
-	
+	public void setId(int id) {
+		this.id = id;
+	}
 }

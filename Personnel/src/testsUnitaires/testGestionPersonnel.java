@@ -14,10 +14,10 @@ class testGestionPersonnel {
 	GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	
 	// Itération 1 test unitaire Gestion personnel
-	@Test
+/*	@Test
 	void testAddLigue() throws SauvegardeImpossible{
 		Ligue ligue = new Ligue(gestionPersonnel, "ligueOne");
 		assertEquals("ligueOne", ligue.getNom());
-	}
+	}*/
 
 }

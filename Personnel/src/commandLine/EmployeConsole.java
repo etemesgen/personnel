@@ -3,12 +3,15 @@ package commandLine;
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 import java.time.LocalDate; /*Itération 2*/
 
+import javax.sound.midi.SysexMessage;
+
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.DateImpossible;
 import personnel.Employe;
 import personnel.GestionPersonnel;
+import personnel.SauvegardeImpossible;
 
 
 public class EmployeConsole 
@@ -66,26 +69,46 @@ public class EmployeConsole
 	}
 */	
 
-	private Option changerNom(final Employe employe)
+	private Option changerNom(final Employe employe) 
 	{
 		return new Option("Changer le nom", "n", 
-				() -> {employe.setNom(getString("Nouveau nom : "));}
+				() -> {try {
+					employe.setNom(getString("Nouveau nom : "));
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					System.out.println("Impossible d'accéder à la base de données");
+				}}
 			);
 	}
 	
 	private Option changerPrenom(final Employe employe)
 	{
-		return new Option("Changer le prénom", "p", () -> {employe.setPrenom(getString("Nouveau prénom : "));});
+		return new Option("Changer le prénom", "p", () -> {try {
+			employe.setPrenom(getString("Nouveau prénom : "));
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			System.out.println("Impossible d'accéder à la base de données");
+		}});
 	}
 	
 	private Option changerMail(final Employe employe)
 	{
-		return new Option("Changer le mail", "e", () -> {employe.setMail(getString("Nouveau mail : "));});
+		return new Option("Changer le mail", "e", () -> {try {
+			employe.setMail(getString("Nouveau mail : "));
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			System.out.println("Impossible d'accéder à la base de données");
+		}});
 	}
 	
 	private Option changerPassword(final Employe employe)
 	{
-		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
+		return new Option("Changer le password", "x", () -> {try {
+			employe.setPassword(getString("Nouveau password : "));
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			System.out.println("Impossible d'accéder à la base de données");
+		}});
 	}
 	
 	/* Itération 2 Changer les dates */
@@ -115,7 +138,12 @@ public class EmployeConsole
 	private Option supprimer(Employe employe)
 	{
 		return new Option("Supprimer", "s", () -> {
-			employe.remove();
+			try {
+				employe.remove();
+			} catch (SauvegardeImpossible e) {
+				// TODO Auto-generated catch block
+				System.out.println("Impossible d'accéder à la base de données");
+			}
 		});
 	}
 

@@ -21,6 +21,7 @@ public class GestionPersonnel implements Serializable
 	private static final long serialVersionUID = -105283113987886425L;
 	private static GestionPersonnel gestionPersonnel = null;
 	private SortedSet<Ligue> ligues;
+//	private SortedSet<Employe> employes;
 	private Employe root = new Employe(this, null, "root", "", "", "toor", null, null);
 	public final static int SERIALIZATION = 1, JDBC = 2, 
 			TYPE_PASSERELLE = JDBC;  
@@ -85,11 +86,11 @@ public class GestionPersonnel implements Serializable
 		return Collections.unmodifiableSortedSet(ligues);
 	}
 
-	public SortedSet<Employe> getEmployes() //itération 4
-	{
-		return Collections.unmodifiableSortedSet(getEmployes());
-	}
-	
+//	public SortedSet<Employe> getEmployes() //itération 4
+//	{
+//		return Collections.unmodifiableSortedSet(employes);
+//	}
+//	
 	public Ligue addLigue(String nom) throws SauvegardeImpossible
 	{
 		Ligue ligue = new Ligue(this, nom); 
@@ -97,20 +98,26 @@ public class GestionPersonnel implements Serializable
 		return ligue;
 	}
 	
-
-	public Employe addEmploye (Ligue id, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) {
-		   Employe employe = new Employe(this, id, nom, prenom, mail, password, dateArrivee, dateDepart);
-		   Employe.add(employe);
-		
-		return employe;
-	} //itération 3
-	
-	public Employe addEmploye(int id, String nom)
+	public Ligue addLigue(int id, String nom)
 	{
-		Employe employe = new Employe(this, id, nom);
-		Employe.add(employe);
-		return employe;
-	} //itération 3
+		Ligue ligue = new Ligue(this, id, nom);
+		ligues.add(ligue);
+		return ligue;
+	}
+	
+//	public Employe addEmploye (Ligue id, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible {
+//		   Employe employe = new Employe(this, id, nom, prenom, mail, password, dateArrivee, dateDepart);
+//		   employes.add(employe);
+//		return employe;
+//	} //itération 3
+//	
+//	public Employe addEmploye(int id, String nom) throws SauvegardeImpossible
+//	{
+//		Employe employe = new Employe(this, id, nom);
+//		employes.add(employe);
+//		passerelle.insert(employe);
+//		return employe;
+//	} //itération 3
 	
 	int insert(Ligue ligue) throws SauvegardeImpossible
 	{
@@ -124,35 +131,26 @@ public class GestionPersonnel implements Serializable
 	
 	void update(Ligue ligue) throws SauvegardeImpossible
 	{
-		passerelle.updateLigue(ligue);
+		passerelle.update(ligue);
 	} //itération 3
 	
-	public void updateE(Employe employe, String string) throws SauvegardeImpossible
+	void update(Employe employe) throws SauvegardeImpossible
 	{
-		passerelle.updateEmploye(employe);
+		passerelle.update(employe);
 	} //itération 3
 	
-	void delete(Employe employe)
+	void delete(Employe employe) throws SauvegardeImpossible
 	{
-		try {
-			passerelle.deleteEmploye(employe);
-		} catch (SauvegardeImpossible e) {
-			
-			e.printStackTrace();
-		}
+			passerelle.delete(employe);
+		
 	} //itération 3
 	
-	void delete(Ligue ligue)
+	void delete(Ligue ligue) throws SauvegardeImpossible
 	{
-		try {
-			passerelle.deleteLigue(ligue);
-		} catch (SauvegardeImpossible e) {
-			
-			e.printStackTrace();
-		}
+			passerelle.delete(ligue);
 	} //itération 3
 	
-	void remove(Ligue ligue)
+	void remove(Ligue ligue) throws SauvegardeImpossible
 	{	
 		gestionPersonnel.delete(ligue);
 		ligues.remove(ligue);
@@ -167,38 +165,38 @@ public class GestionPersonnel implements Serializable
 		return root;
 	}
 	
-	public void changerAdmin(Employe employe)
-	{
-		try
-		{
-			passerelle.newAdmin(employe);
-		}
-		catch(SauvegardeImpossible e)
-		{
-			e.printStackTrace();
-		}
-	}
-	void setAdmin(Employe employe)
-	{
-		try
-		{
-			passerelle.setAdmin(employe);
-		}
-		catch(SauvegardeImpossible e)
-		{
-			e.printStackTrace();
-		}
-	}
+//	public void changerAdmin(Employe employe)
+//	{
+//		try
+//		{
+//			passerelle.newAdmin(employe);
+//		}
+//		catch(SauvegardeImpossible e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
+//	void setAdmin(Employe employe)
+//	{
+//		try
+//		{
+//			passerelle.setAdmin(employe);
+//		}
+//		catch(SauvegardeImpossible e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
 	
-	void removeAdmin(Ligue ligue)
-	{
-		try {
-			passerelle.removeAdmin(ligue);
-		} catch (SauvegardeImpossible e) {
-			e.printStackTrace();
-		}
-	}
-	
+//	void removeAdmin(Ligue ligue)
+//	{
+//		try {
+//			passerelle.removeAdmin(ligue);
+//		} catch (SauvegardeImpossible e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
 	public boolean haveWritePermission(Ligue ligue, Employe employe) {
 		if(employe.estRoot()) {
 			return true;

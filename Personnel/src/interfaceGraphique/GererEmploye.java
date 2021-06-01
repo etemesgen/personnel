@@ -154,6 +154,21 @@ public class GererEmploye {
 		});
 		 return itemMenu;
 	 }
+	 
+	public ListSelectionListener getEmployeListSelectionListener(JList<Employe> source){
+		return new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()){
+		            Employe selectedEmploye = (Employe) source.getSelectedValue();
+		            frame().setVisible(false);
+		            SelectionnerEmploye employe = new SelectionnerEmploye(gestionPersonnel, selectedEmploye, ligue, connectedEmploye);
+		            employe.employeShow();
+		        }
+			}
+		};
+	}
 	
 	public JList<Employe> list()
 	{
@@ -166,19 +181,7 @@ public class GererEmploye {
 		{
 			listEmp.addElement(employe);
 		}
-		empL.addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (!e.getValueIsAdjusting()){
-		            JList source = (JList)e.getSource();
-		            Employe selectedEmploye = (Employe) source.getSelectedValue();
-		            frame().setVisible(false);
-		            SelectionnerEmploye employe = new SelectionnerEmploye(gestionPersonnel, selectedEmploye, ligue, connectedEmploye);
-		            employe.employeShow();
-		        }
-			}
-		});
+		 empL.addListSelectionListener(getEmployeListSelectionListener(empL));
 		 empL.setFont(new Font("Rockwell Nova", Font.BOLD, 22));
 		 empL.setBackground(Color.decode("#ffffff"));
 		 empL.setForeground(Color.decode("#222222"));
@@ -238,7 +241,12 @@ public class GererEmploye {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String inputValue = JOptionPane.showInputDialog("Nom de la ligue"); 
-				ligue.setNom(inputValue);
+				try {
+					ligue.setNom(inputValue);
+				} catch (SauvegardeImpossible e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace(); //Mettre un pop up 
+				}
 				Accueil pageLigues = new Accueil(gestionPersonnel, connectedEmploye);
 				frame().setVisible(false);
 				frame().dispose();

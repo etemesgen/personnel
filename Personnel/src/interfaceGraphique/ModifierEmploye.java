@@ -26,6 +26,7 @@ import personnel.DateImpossible;
 import personnel.Employe;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
+import personnel.SauvegardeImpossible;
 
 
 
@@ -181,10 +182,30 @@ public class ModifierEmploye {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			  employe.setNom(nom.getText());
-			  employe.setPrenom(prenom.getText());
-			  employe.setMail(mail.getText());
-			  employe.setPassword(password.getText());
+			  try {
+				employe.setNom(nom.getText());
+			} catch (SauvegardeImpossible e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace(); //Pop up
+			}
+			  try {
+				employe.setPrenom(prenom.getText());
+			} catch (SauvegardeImpossible e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace(); //Pop up
+			}
+			  try {
+				employe.setMail(mail.getText());
+			} catch (SauvegardeImpossible e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace(); //Pop up
+			}
+			  try {
+				employe.setPassword(password.getText());
+			} catch (SauvegardeImpossible e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace(); //Pop up
+			}
 			  try {
 				employe.setDateArrivee(LocalDate.parse(dateArrive.getText()));
 			} catch (DateTimeException e1) {

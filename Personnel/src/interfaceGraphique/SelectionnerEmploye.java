@@ -238,7 +238,12 @@ public class SelectionnerEmploye{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					selectedEmploye.remove();
+					try {
+						selectedEmploye.remove();
+					} catch (SauvegardeImpossible e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace(); // Faire un pop up
+					}
 					JOptionPane.showMessageDialog(null, "L'employé a été supprimé", "Suppression de l'employé", JOptionPane.INFORMATION_MESSAGE);
 					frame().setVisible(false);
 					frame().dispose();

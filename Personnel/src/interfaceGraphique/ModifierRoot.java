@@ -204,7 +204,7 @@ private JTextField depart;
 				 connectedEmploye.setMail(email.getText());
 				 connectedEmploye.setPassword(pass.getText());
 				 try {
-					gestionPersonnel.updateE(gestionPersonnel.getRoot(), null);
+					gestionPersonnel.update(gestionPersonnel.getRoot(), null);
 				} catch (SauvegardeImpossible e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

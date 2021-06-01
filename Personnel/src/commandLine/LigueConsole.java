@@ -115,12 +115,17 @@ private List<Ligue> selectionnerLigue()
 				() -> 
 				{
 					System.out.println("Ajouter un employé");
-					ligue.addEmploye(getString("nom : "), 
-						getString("prenom : "),
-						getString("mail : "), 
-						getString("password : "), 
-						LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), 
-						LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : ")));
+					try {
+						ligue.addEmploye(getString("nom : "), 
+							getString("prenom : "),
+							getString("mail : "), 
+							getString("password : "), 
+							LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), 
+							LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : ")));
+					} catch (SauvegardeImpossible e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			/*Itération 2 Ajout des dates */	
 					//	LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), LocalDate.parse(getString("Date de départ (YYYY-MM-DD) : "));		
 			}

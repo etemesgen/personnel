@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import personnel.Employe;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
+import personnel.SauvegardeImpossible;
 
 
 
@@ -162,7 +163,12 @@ public class AjouterEmploye{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ligue.addEmploye(nom.getText(), prenom.getText(), mail.getText(), pass.getText(), null, null);
+				try {
+					ligue.addEmploye(nom.getText(), prenom.getText(), mail.getText(), pass.getText(), null, null);
+				} catch (SauvegardeImpossible e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	            frame().setVisible(false);
 	            frame().dispose();
 	            GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
