@@ -271,7 +271,12 @@ public class GererEmploye {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ligue.removeAdmin();
+				try {
+					ligue.getAdministrateur().remove();
+				} catch (SauvegardeImpossible e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(null, "la ligue a été supprimée", "supprimer la ligue", JOptionPane.INFORMATION_MESSAGE);
 				Accueil pageLigues = new Accueil(gestionPersonnel, connectedEmploye);
 				frame().setVisible(false);

@@ -51,7 +51,7 @@ public class GestionPersonnel implements Serializable
 	public GestionPersonnel()
 	{
 		if (gestionPersonnel != null)
-			throw new RuntimeException("Vous ne pouvez crÃ©er qu'une seuls instance de cet objet.");
+			throw new RuntimeException("Vous ne pouvez créer qu'une seuls instance de cet objet.");
 		ligues = new TreeSet<>();
 		gestionPersonnel = this;
 	}
@@ -134,14 +134,14 @@ public class GestionPersonnel implements Serializable
 		passerelle.update(ligue);
 	} //itération 3
 	
-	void update(Employe employe) throws SauvegardeImpossible
+	public void update(Employe employe) throws SauvegardeImpossible
 	{
 		passerelle.update(employe);
 	} //itération 3
 	
 	void delete(Employe employe) throws SauvegardeImpossible
 	{
-			passerelle.delete(employe);
+		passerelle.delete(employe);
 		
 	} //itération 3
 	

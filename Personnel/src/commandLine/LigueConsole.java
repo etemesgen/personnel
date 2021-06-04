@@ -90,7 +90,12 @@ public class LigueConsole
 	private Option changerNom(final Ligue ligue)
 {
 	return new Option("Renommer", "r", 
-			() -> {ligue.setNom(getString("Nouveau nom : "));});
+			() -> {try {
+				ligue.setNom(getString("Nouveau nom : "));
+			} catch (SauvegardeImpossible e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}});
 }
 	
 //Itération 2 : Changer d'administrateur
@@ -169,7 +174,12 @@ private List<Ligue> selectionnerLigue()
 	{
 		return new List<>("Supprimer un employé", "x", 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {element.remove();}
+				(index, element) -> {try {
+					element.remove();
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}}
 				);
 	}
 
@@ -183,7 +193,12 @@ private List<Ligue> selectionnerLigue()
 	
 	private Option supprimer(Ligue ligue)
 	{
-		return new Option("Supprimer", "d", () -> {ligue.removeAdmin();});
+		return new Option("Supprimer", "d", () -> {try {
+			ligue.getAdministrateur().remove();
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}});
 	}
 
 	/*Itération 3*/
@@ -199,8 +214,12 @@ private List<Ligue> selectionnerLigue()
 		List<Employe> liste = new List<>("Changer d'administrateur", key, 
 				() -> new ArrayList<>(ligue.getEmployes()),
 				(index, element) -> {
-					ligue.setAdministrateur(element);
-					gestionPersonnel.changerAdmin(element);
+					try {
+						ligue.setAdministrateur(element);
+					} catch (SauvegardeImpossible e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				});
 		liste.addBack("q");
 		return liste;

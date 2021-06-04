@@ -275,8 +275,18 @@ public class SelectionnerEmploye{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(!selectedEmploye.estAdmin(ligue)) {
-					ligue.setAdministrateur(selectedEmploye);
-					ligue.setAdmin(selectedEmploye);
+					try {
+						ligue.setAdministrateur(selectedEmploye);
+					} catch (SauvegardeImpossible e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						ligue.setAdministrateur(selectedEmploye);
+					} catch (SauvegardeImpossible e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					JOptionPane.showMessageDialog(null, "L'émployé est maintenant l'admin de la ligue" + ligue.getNom() + ".", "Nommer en tant qu'admin", JOptionPane.INFORMATION_MESSAGE);
 					frame().setVisible(false);
 					frame().dispose();
@@ -284,7 +294,12 @@ public class SelectionnerEmploye{
 					employesPage.listEmployes();
 				}
 				else if(selectedEmploye.estAdmin(ligue)) {
-					ligue.removeAdmin(); 
+					try {
+						ligue.getAdministrateur().remove();
+					} catch (SauvegardeImpossible e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} 
 					frame().setVisible(false);
 					frame().dispose();
 					GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);

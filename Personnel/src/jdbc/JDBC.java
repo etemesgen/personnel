@@ -166,7 +166,7 @@ public class JDBC implements Passerelle
 		{
 			PreparedStatement instruction2;
 			//Ajouter niveau privilege et admin dans requete
-			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail, password, date_arrivee, date_depart, num_ligue) values (?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail, password, niveau_privilege, date_arrivee, date_depart, num_ligue) values (?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction2.setString(1, employe.getNom());
 			instruction2.setString(2, employe.getPrenom());
 			instruction2.setString(3, employe.getMail());

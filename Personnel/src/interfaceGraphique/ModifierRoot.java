@@ -199,12 +199,32 @@ private JTextField depart;
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				 connectedEmploye.setNom(nom.getText());
-				 connectedEmploye.setPrenom(prenom.getText());
-				 connectedEmploye.setMail(email.getText());
-				 connectedEmploye.setPassword(pass.getText());
 				 try {
-					gestionPersonnel.update(gestionPersonnel.getRoot(), null);
+					connectedEmploye.setNom(nom.getText());
+				} catch (SauvegardeImpossible e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				 try {
+					connectedEmploye.setPrenom(prenom.getText());
+				} catch (SauvegardeImpossible e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 try {
+					connectedEmploye.setMail(email.getText());
+				} catch (SauvegardeImpossible e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 try {
+					connectedEmploye.setPassword(pass.getText());
+				} catch (SauvegardeImpossible e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 try {
+					gestionPersonnel.update(connectedEmploye);
 				} catch (SauvegardeImpossible e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

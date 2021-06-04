@@ -170,7 +170,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param password le password auquel comparer celui de l'employé.
 	 */
 	
-	public String getPassword ()
+	public String getPassword()
 	{
 		return password;
 	}
