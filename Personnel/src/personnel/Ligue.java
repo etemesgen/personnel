@@ -136,7 +136,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 
 	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible
 	{
-		Employe employe = new Employe (this.gestionPersonnel, this, nom, prenom, mail, password);
+		Employe employe = new Employe (this.gestionPersonnel, this, nom, prenom, mail, password, dateArrivee, dateDepart);
 		employe.setId(gestionPersonnel.insert(employe));
 		employes.add(employe);
 		return employe;
@@ -167,6 +167,11 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Supprime la ligue, entraîne la suppression de tous les employés
 	 * de la ligue.
 	 */
+	
+	public void remove() throws SauvegardeImpossible
+	{
+		gestionPersonnel.remove(this);
+	}
 	
 //	public void removeAdmin()
 //	{

@@ -248,7 +248,7 @@ public class SelectionnerEmploye{
 					frame().setVisible(false);
 					frame().dispose();
 					GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
-					employesPage.listEmployes();
+					employesPage.GererEmploye();
 				}
 		});
 		return delete;
@@ -291,7 +291,7 @@ public class SelectionnerEmploye{
 					frame().setVisible(false);
 					frame().dispose();
 					GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
-					employesPage.listEmployes();
+					employesPage.GererEmploye();
 				}
 				else if(selectedEmploye.estAdmin(ligue)) {
 					try {
@@ -303,7 +303,7 @@ public class SelectionnerEmploye{
 					frame().setVisible(false);
 					frame().dispose();
 					GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
-					employesPage.listEmployes();
+					employesPage.GererEmploye();
 				}
 			}
 		});

@@ -1,6 +1,7 @@
 package interfaceGraphique;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,6 +9,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,6 +32,7 @@ public class AjouterEmploye{
 	
 	private static Ligue ligue;
 	private static GestionPersonnel gestionPersonnel;
+	private static Accueil ligues;
 	private JTextField nom;
 	private JTextField prenom;
 	private JTextField mail;
@@ -39,8 +43,8 @@ public class AjouterEmploye{
 	
 	
 	public AjouterEmploye(GestionPersonnel gestionPersonnel, Ligue ligue, Employe connectedEmploye) {
-		    AjouterEmploye.ligue = ligue;
-		    AjouterEmploye.gestionPersonnel = gestionPersonnel;
+		    this.ligue = ligue;
+		    this.gestionPersonnel = gestionPersonnel;
 		    this.connectedEmploye = connectedEmploye;
 	}
 	
@@ -172,7 +176,7 @@ public class AjouterEmploye{
 	            frame().setVisible(false);
 	            frame().dispose();
 	            GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
-				employesPage.listEmployes();
+				employesPage.GererEmploye();
 			}
 		});
 		return addbtn;
@@ -191,7 +195,7 @@ public class AjouterEmploye{
 				frame().setVisible(false);
 				frame().dispose();
 				GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
-				employesPage.listEmployes();
+				employesPage.GererEmploye();
 			}
 		});
 		return cancelbtn;

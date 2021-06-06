@@ -41,15 +41,17 @@ public class GererEmploye {
 	private  GestionPersonnel gestionPersonnel;
 	private  Ligue ligue;
 	private  Accueil accueil;
+	private Employe selectedEmploye;
 	private Employe connectedEmploye;
 	
 	 public GererEmploye(GestionPersonnel gestionPersonnel, Ligue ligue, Employe connectedEmploye) {
 		    this.gestionPersonnel = gestionPersonnel;
 		    this.ligue = ligue;
 		    this.connectedEmploye = connectedEmploye;
+	//	    this.selectedEmploye = selectedEmploye;
 	}
 	 
-	public void listEmployes()
+	public void GererEmploye()
 	{
 		frame().setVisible(true);
 	}
@@ -270,14 +272,13 @@ public class GererEmploye {
 		deleteLigue.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e){
 				try {
-					ligue.getAdministrateur().remove();
+					ligue.remove();
 				} catch (SauvegardeImpossible e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null, "la ligue a été supprimée", "supprimer la ligue", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "La ligue a été supprimée", "supprimer la ligue", JOptionPane.INFORMATION_MESSAGE);
 				Accueil pageLigues = new Accueil(gestionPersonnel, connectedEmploye);
 				frame().setVisible(false);
 				frame().dispose();

@@ -185,7 +185,7 @@ public class Accueil {
 		            JList source = (JList)e.getSource();
 		            Ligue selected = (Ligue) source.getSelectedValue();
 		            GererEmploye ligue = new  GererEmploye(gestionPersonnel,selected, connectedEmploye);
-		            ligue.listEmployes();
+		            ligue.GererEmploye();
 		        }
 				
 			}

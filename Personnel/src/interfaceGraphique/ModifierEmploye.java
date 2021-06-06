@@ -227,7 +227,7 @@ public class ModifierEmploye {
 			  frame().setVisible(false);
 			  frame().dispose();
 			  GererEmploye employespage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
-			  employespage.listEmployes();
+			  employespage.GererEmploye();
 			}
 		});
 		return addbtn;
@@ -246,7 +246,7 @@ public class ModifierEmploye {
 				  frame().setVisible(false);
 				  frame().dispose();
 				  GererEmploye employespage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);
-				  employespage.listEmployes();
+				  employespage.GererEmploye();
 			}
 		});
 		return cancelbtn;

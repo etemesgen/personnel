@@ -166,24 +166,24 @@ public class JDBC implements Passerelle
 		{
 			PreparedStatement instruction2;
 			//Ajouter niveau privilege et admin dans requete
-			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail, password, niveau_privilege, date_arrivee, date_depart, num_ligue) values (?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail, password, date_arrivee, date_depart, num_ligue) values (?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction2.setString(1, employe.getNom());
 			instruction2.setString(2, employe.getPrenom());
 			instruction2.setString(3, employe.getMail());
 			instruction2.setString(4, employe.getPassword());
 			instruction2.setInt(5, employe.getLigue().getId());
-			instruction2.setString(6, String.valueOf(employe.getDateArrivee()));
+			instruction2.setString(6, employe.getDateArrivee() == null ? null :  String.valueOf(employe.getDateArrivee()));
 			instruction2.setString(7, String.valueOf(employe.getDateDepart()));
 			instruction2.executeUpdate();
 			ResultSet id = instruction2.getGeneratedKeys();
 			id.next();
+			return id.getInt(1);
 		}
 		catch (SQLException exception)
 		{
 			exception.printStackTrace();
 			throw new SauvegardeImpossible(exception);
 		}
-		return 0;
 	}
 	
 	public void update(Employe employe, String dataList) throws SauvegardeImpossible 
@@ -198,11 +198,11 @@ public class JDBC implements Passerelle
 						map.put("prenom_employe", employe.getPrenom());
 						map.put("mail", employe.getMail());
 						map.put("password", employe.getPassword());
-						map.put("date_arrivee", String.valueOf(employe.getDateArrivee()));
-						map.put("date_depart", String.valueOf(employe.getDateDepart()));
+						map.put("date_arrivee", String.valueOf(employe.getDateArrivee()).isEmpty() ? null : String.valueOf(employe.getDateArrivee()));
+						map.put("date_depart", String.valueOf(employe.getDateDepart()).isEmpty() ? null : String.valueOf(employe.getDateDepart()));
 			instruction.setString(1, map.get(dataList));
 		    instruction.setInt(2, employe.getId());
-				instruction.executeUpdate();
+			instruction.executeUpdate();
 			}
 		
 		catch (SQLException e)

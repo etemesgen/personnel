@@ -24,9 +24,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	private LocalDate dateDepart, dateArrivee;
 	private int id;
 	
-	Employe(GestionPersonnel ligue2, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrivee)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrivee)
 	{
-		this.gestionPersonnel = ligue2;
+		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
@@ -37,25 +37,14 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	}
 
-	Employe (GestionPersonnel gestionPersonnel, int id, String nom) //itération 3
+	public Employe (GestionPersonnel gestionPersonnel, int id, String nom) //itération 3
 		{
 			this.nom = nom;
 			employes = new TreeSet<>();
 			this.gestionPersonnel = gestionPersonnel;
+	//		administrateur = gestionPersonnel.getRoot();
 			this.id = id;
 		}
-	
-	
-	Employe (GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
-	{
-		this.gestionPersonnel = gestionPersonnel;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.password = password;
-		this.mail = mail;
-		this.ligue = ligue;
-	}
-	
 
 	/**
 	 * Retourne vrai si l'employé est administrateur de la ligue 
@@ -246,5 +235,9 @@ public class Employe implements Serializable, Comparable<Employe>
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void update(String string) throws SauvegardeImpossible {
+		 gestionPersonnel.update(this);
 	}
 }
