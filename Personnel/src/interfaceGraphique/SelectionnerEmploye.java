@@ -287,7 +287,7 @@ public class SelectionnerEmploye{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					JOptionPane.showMessageDialog(null, "L'émployé est maintenant l'admin de la ligue :" + ligue.getNom() + ".", "Nommer en tant qu'admin", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "L'émployé est maintenant l'admin de la ligue : " + ligue.getNom() + ".", "Nommer en tant qu'admin", JOptionPane.INFORMATION_MESSAGE);
 					frame().setVisible(false);
 					frame().dispose();
 					GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);

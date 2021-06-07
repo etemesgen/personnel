@@ -40,7 +40,7 @@ public class ModifierEmploye {
 	private JTextField prenom;
 	private JTextField mail;
 	private JTextField pass;
-	private JTextField dateArrive;
+	private JTextField dateArrivee;
 	private JTextField dateDepart;
 	private Employe connectedEmploye;
 	private Employe employe;
@@ -210,7 +210,7 @@ public class ModifierEmploye {
 				e2.printStackTrace();
 			}
 			  try {
-				employe.setDateArrivee(LocalDate.parse(dateArrive.getText()));
+				employe.setDateArrivee(LocalDate.parse(dateArrivee.getText()));
 			} catch (DateImpossible e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -296,13 +296,13 @@ public class ModifierEmploye {
 	
 	private  JTextField DateArriveeInput()
 	{
-		dateArrive = new JTextField();
-		dateArrive.setEditable(true);
+		dateArrivee = new JTextField();
+		dateArrivee.setEditable(true);
 		if(employe.getDateArrivee() != null)
 		{
-			dateArrive.setText(String.valueOf(employe.getDateArrivee()));
+			dateArrivee.setText(String.valueOf(employe.getDateArrivee()));
 		}
-		return dateArrive;
+		return dateArrivee;
 	}
 	
 	private JTextField DateDepartInput()

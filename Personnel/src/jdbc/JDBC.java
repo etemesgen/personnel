@@ -289,12 +289,14 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("UPDATE employe SET nom_employe = ?, prenom_employe = ?, mail = ? , password = ? WHERE id_employe = ?");
+			instruction = connection.prepareStatement("UPDATE employe SET nom_employe = ?, prenom_employe = ?, mail = ? , password = ? , date_arrivee = ?, date_depart = ? WHERE id_employe = ?");
 			instruction.setString(1, employe.getNom());
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getMail());
 			instruction.setString(4, employe.getPassword());
-			instruction.setInt(5, employe.getId());
+			instruction.setString(5, String.valueOf(employe.getDateArrivee()));
+			instruction.setString(6, String.valueOf(employe.getDateDepart()));
+			instruction.setInt(7, employe.getId());
 			instruction.executeUpdate();
 		}
 		catch (SQLException e) 
