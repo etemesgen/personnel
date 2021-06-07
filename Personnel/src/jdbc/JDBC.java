@@ -56,20 +56,22 @@ public class JDBC implements Passerelle
 				Ligue ligue =  gestionPersonnel.addLigue(ligues.getInt("num_ligue"), ligues.getString("nom_ligue"));
 			PreparedStatement response = connection.prepareStatement("SELECT * FROM employe where num_ligue = ?");
 			response.setInt(1, ligues.getInt("num_ligue"));
-			ResultSet employe1 = response.executeQuery();
+			ResultSet employe = response.executeQuery();
 		//	Ligue ligue = gestionPersonnel.getLigues().last();
 	
-			while (employe1.next()) {
-				int id = employe1.getInt ("id_employe");
-				String nom = employe1.getString ("nom_employe");
-				String prenom = employe1.getString("prenom");
-				String mail = employe1.getString("mail");
-				String password = employe1.getString("password");
-				LocalDate dateArrivee = LocalDate.parse(employe1.getString("date_arrivee")); 
-				LocalDate dateDepart =  LocalDate.parse(employe1.getString("date_depart"));
-				Employe employes = ligue.addEmploye(nom, prenom, mail, password, dateArrivee, dateDepart);
+			while (employe.next()) {
+				int id = employe.getInt ("id_employe");
+				String nom = employe.getString ("nom_employe");
+				String prenom = employe.getString("prenom");
+				String mail = employe.getString("mail");
+				String password = employe.getString("password");
+				LocalDate dateArrivee =  employe.getString("dateArrivee_employe") != null ?
+		                LocalDate.parse(employe.getString("dateArrivee_employe")) : null; 
+				LocalDate dateDepart =  employe.getString("dateDepart_employe") != null ? 
+		                LocalDate.parse(employe.getString("dateDepart_employe")) : null;
+				Employe employes = ligue.addEmploye(nom, prenom, mail, password, dateArrivee, dateDepart, id);
 				    
-				    if(employe1.getBoolean("admin")) {
+				    if(employe.getBoolean("admin")) {
 				    	ligue.setAdministrateur(employes);
 			}
 		}
@@ -171,9 +173,9 @@ public class JDBC implements Passerelle
 			instruction2.setString(2, employe.getPrenom());
 			instruction2.setString(3, employe.getMail());
 			instruction2.setString(4, employe.getPassword());
-			instruction2.setInt(5, employe.getLigue().getId());
-			instruction2.setString(6, employe.getDateArrivee() == null ? null :  String.valueOf(employe.getDateArrivee()));
-			instruction2.setString(7, String.valueOf(employe.getDateDepart()));
+			instruction2.setString(5, employe.getDateArrivee() == null ? null :  String.valueOf(employe.getDateArrivee()));
+			instruction2.setString(6, String.valueOf(employe.getDateDepart()));
+			instruction2.setInt(7, employe.getLigue().getId());
 			instruction2.executeUpdate();
 			ResultSet id = instruction2.getGeneratedKeys();
 			id.next();
@@ -186,7 +188,7 @@ public class JDBC implements Passerelle
 		}
 	}
 	
-	public void update(Employe employe, String dataList) throws SauvegardeImpossible 
+/*	public void update(Employe employe, String dataList) throws SauvegardeImpossible 
 	{
 		try 
 		{
@@ -210,7 +212,7 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(e);
 		}
 	}
-	
+*/	
 	@Override
 	public void delete(Employe employe) throws SauvegardeImpossible 
 	{	
@@ -282,9 +284,24 @@ public class JDBC implements Passerelle
 //	
 
 	@Override
-	public void update(Employe employe) throws SauvegardeImpossible {
-		// TODO Auto-generated method stub
-		
+	public void update(Employe employe) throws SauvegardeImpossible 
+	{
+		try
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("UPDATE employe SET nom_employe = ?, prenom_employe = ?, mail = ? , password = ? WHERE id_employe = ?");
+			instruction.setString(1, employe.getNom());
+			instruction.setString(2, employe.getPrenom());
+			instruction.setString(3, employe.getMail());
+			instruction.setString(4, employe.getPassword());
+			instruction.setInt(5, employe.getId());
+			instruction.executeUpdate();
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
 	}
 }
 

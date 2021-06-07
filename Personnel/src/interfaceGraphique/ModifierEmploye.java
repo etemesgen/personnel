@@ -1,6 +1,7 @@
 package interfaceGraphique;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -32,21 +33,23 @@ import personnel.SauvegardeImpossible;
 
 public class ModifierEmploye {
 	
-    private Employe employe;
-    private GestionPersonnel gestionPersonnel;
-    JTextField nom;
-    JTextField prenom;
-    JTextField mail;
-    JTextField password;
-    JTextField dateArrive;
-    JTextField dateDepart;
-    private Employe connectedEmploye;
-    private Ligue ligue;
+	private static Ligue ligue;
+	private static GestionPersonnel gestionPersonnel;
+	private static Accueil ligues;
+	private JTextField nom;
+	private JTextField prenom;
+	private JTextField mail;
+	private JTextField pass;
+	private JTextField dateArrive;
+	private JTextField dateDepart;
+	private Employe connectedEmploye;
+	private Employe employe;
+	
     
 	public ModifierEmploye(GestionPersonnel gestionPersonnel, Employe employe, Ligue ligue, Employe connectedEmploye) {
 		   this.gestionPersonnel = gestionPersonnel;
-		   this.employe = employe;
 		   this.ligue = ligue;
+		   this.employe = employe;
 		   this.connectedEmploye = connectedEmploye;
 	}
 	
@@ -179,48 +182,42 @@ public class ModifierEmploye {
 		addbtn.setForeground(Color.decode("#FFFFFF"));
 		addbtn.setFont(new Font("Rockwell Nova", Font.BOLD, 20));
 		addbtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			  try {
 				employe.setNom(nom.getText());
 			} catch (SauvegardeImpossible e2) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace(); //Pop up
+				e2.printStackTrace();
 			}
 			  try {
 				employe.setPrenom(prenom.getText());
 			} catch (SauvegardeImpossible e2) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace(); //Pop up
+				e2.printStackTrace();
 			}
 			  try {
 				employe.setMail(mail.getText());
 			} catch (SauvegardeImpossible e2) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace(); //Pop up
+				e2.printStackTrace();
 			}
 			  try {
-				employe.setPassword(password.getText());
+				employe.setPassword(pass.getText());
 			} catch (SauvegardeImpossible e2) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace(); //Pop up
+				e2.printStackTrace();
 			}
 			  try {
 				employe.setDateArrivee(LocalDate.parse(dateArrive.getText()));
-			} catch (DateTimeException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			} catch (DateImpossible e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			  try {
 				employe.setDateDepart(dateDepart.getText().isEmpty() ? null : LocalDate.parse(dateDepart.getText()));
-			 } catch (DateTimeException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (DateImpossible e1) {
+			 } catch (DateImpossible e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -256,7 +253,10 @@ public class ModifierEmploye {
 	{
 		nom = new JTextField();
 		nom.setEditable(true);
-		nom.setText(employe.getNom());
+		if(employe.getNom() != null)
+		{
+			nom.setText(employe.getNom());
+		}
 		return nom;
 	}
 	
@@ -264,7 +264,10 @@ public class ModifierEmploye {
 	{
 		prenom = new JTextField();
 		prenom.setEditable(true);
-		prenom.setText(employe.getPrenom());
+		if(employe.getPrenom() != null)
+		{
+			prenom.setText(employe.getPrenom());
+		}
 		return prenom;
 	}
 	
@@ -273,16 +276,22 @@ public class ModifierEmploye {
 	{
 		mail = new JTextField();
 		mail.setEditable(true);
-		mail.setText(employe.getMail());
+		if(employe.getMail() != null)
+		{
+			mail.setText(employe.getMail());
+		}
 		return mail;
 	}
 	
 	private  JTextField passwordInput()
 	{
-		password = new JTextField();
-		password.setEditable(true);
-		password.setText(employe.getPassword());
-		return password;
+		pass = new JTextField();
+		pass.setEditable(true);
+		if(employe.getPassword() != null)
+		{
+			pass.setText(employe.getPassword());
+		}
+		return pass;
 	}
 	
 	private  JTextField DateArriveeInput()

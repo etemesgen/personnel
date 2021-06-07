@@ -65,7 +65,7 @@ public class Accueil {
     }
     
     public Employe getEmploye(Employe employe){
-		return employe = employe;
+		return employe;
 	}
     
     public JFrame frame(){
@@ -224,7 +224,4 @@ public class Accueil {
 	 {
 		 return ligue;
 	 }
-	 
-	 
-
 }

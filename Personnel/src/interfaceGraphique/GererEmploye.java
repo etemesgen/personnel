@@ -41,7 +41,7 @@ public class GererEmploye {
 	private  GestionPersonnel gestionPersonnel;
 	private  Ligue ligue;
 	private  Accueil accueil;
-	private Employe selectedEmploye;
+//	private Employe selectedEmploye;
 	private Employe connectedEmploye;
 	
 	 public GererEmploye(GestionPersonnel gestionPersonnel, Ligue ligue, Employe connectedEmploye) {
@@ -126,7 +126,7 @@ public class GererEmploye {
 		 menubar.setPreferredSize(new Dimension(60,60));
 		 menubar.add(menuLigues());
 		 menubar.setBackground(Color.decode("#f2ef13"));
-		return menubar;
+		 return menubar;
 	}
 	
 	private JMenu menuLigues()
@@ -166,7 +166,7 @@ public class GererEmploye {
 		            Employe selectedEmploye = (Employe) source.getSelectedValue();
 		            frame().setVisible(false);
 		            SelectionnerEmploye employe = new SelectionnerEmploye(gestionPersonnel, selectedEmploye, ligue, connectedEmploye);
-		            employe.employeShow();
+		            employe.SelectionnerEmploye();
 		        }
 			}
 		};

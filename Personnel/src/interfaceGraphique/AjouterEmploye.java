@@ -167,12 +167,13 @@ public class AjouterEmploye{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					ligue.addEmploye(nom.getText(), prenom.getText(), mail.getText(), pass.getText(), null, null);
-				} catch (SauvegardeImpossible e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+					try {
+						ligue.addEmploye(nom.getText(), prenom.getText(), mail.getText(), pass.getText(), LocalDate.parse(dateArrivee.getText()), LocalDate.parse(dateDepart.getText()));
+					} catch (SauvegardeImpossible e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
 	            frame().setVisible(false);
 	            frame().dispose();
 	            GererEmploye employesPage = new GererEmploye(gestionPersonnel, ligue, connectedEmploye);

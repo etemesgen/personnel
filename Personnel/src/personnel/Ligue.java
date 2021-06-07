@@ -71,8 +71,9 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		return dateArrivee;
 	}
 	
-	public void setdateArrivee(LocalDate dateArrivee){
+	public void setdateArrivee(LocalDate dateArrivee) throws SauvegardeImpossible{
 		this.dateArrivee = dateArrivee; 
+		gestionPersonnel.update(this);
 	}
 
 	public LocalDate getdateDepart() {
